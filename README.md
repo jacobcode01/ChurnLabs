@@ -109,15 +109,9 @@ http://localhost:8000
 <hr>
 
 ## Impact
-- Achieved ~90% recall for churn, improving early identification of high-risk customers and reducing missed churn.
-- Optimized decision threshold to prioritize recall, aligning model performance with retention-focused objectives.
-- Enables targeted retention by identifying customers most likely to churn, improving retention effectiveness.
-- Deployed a real-time churn prediction system, enabling immediate churn risk assessment during decision making.
-
-## Impact
-- Raised churn recall from 80% to 90% by tuning the decision threshold, surfacing more at-risk customers for retention (89% recall on the held-out test set).
-- Prioritized recall over precision by design — in churn, a wasted retention offer costs far less than losing a saveable customer.
-- Deployed an end-to-end, on-demand churn prediction system (FastAPI + React) for immediate churn-risk scoring at decision time.
+- Raised churn recall from 80% to 90% by tuning the decision threshold, improving early identification of high-risk customers.
+- Prioritized recall over precision to catch more true churners, treating a false positive as the cheaper retention error.
+- Deployed an on-demand churn prediction system, enabling immediate churn-risk assessment at decision time.
 
 <hr>
 
@@ -340,7 +334,7 @@ http://localhost:8000/docs
 >
 > Add the following environment variables :
 >
-> ```
+> ```bash
 > ENV=your_env_name
 > PORT=your_api_port
 > ALLOWED_ORIGINS=your_allowed_origins
@@ -398,7 +392,7 @@ http://localhost:5173
 >
 > Navigate to : **Netlify Dashboard → Site Settings → Environment Variables**
 >
-> ```bash
+> ```
 > VITE_API_URL=your_base_api_url
 > ```
 >
@@ -647,7 +641,7 @@ wsl --install
     - Launch the App
 - The first launch may take a few minutes.
 - When Ubuntu runs for the first time, it will ask you to create a Linux user :
-```bash
+```
 Enter new UNIX username: your_username
 New password: your_password
 ```
@@ -677,7 +671,7 @@ sudo apt install build-essential -y
 make --version
 ```
 - You should see output similar to :
-```bash
+```
 GNU Make 4.x
 Built for x86_64-pc-linux-gnu
 ```
@@ -740,6 +734,7 @@ http://localhost:5000
 ### 1. Model Comparison
 - MLflow makes it easy to compare multiple models trained during experimentation.
 - For this project, several classification models were evaluated, including :
+	- Dummy Classifier 
     - Logistic Regression
     - K-Nearest Neighbors
     - Support Vector Classifier

@@ -109,8 +109,8 @@ http://localhost:8000
 <hr>
 
 ## Impact
-- Raised churn recall from 80% to 90% by tuning the decision threshold, improving early identification of high-risk customers.
-- Prioritized recall over precision to catch more true churners, treating a false positive as the cheaper retention error.
+- Raised churn recall from 80% to 90% by tuning the decision threshold, catching more high-risk customers early.
+- Prioritized recall over precision, treating a false positive as the cheaper retention error.
 - Deployed an on-demand churn prediction system, enabling immediate churn-risk assessment at decision time.
 
 <hr>

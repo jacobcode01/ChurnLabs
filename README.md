@@ -297,7 +297,7 @@ http://localhost:5000
 <hr>
 
 ### 7. Start the FastAPI Backend
-- The FastAPI server loads the trained model and expose endpoints for inference and system health.
+- The FastAPI server loads the trained model and exposes endpoints for inference and system health.
 - Run the FastAPI backend server :
 ```bash
 make api-dev
@@ -359,7 +359,7 @@ Access the live API documentation [here](https://churnlabs.onrender.com/docs) or
 <hr>
 
 ### 8. Start the React Frontend
-- The frontend provides an interactive UI for generating real-time churn predictions.
+- The frontend provides an interactive UI for generating on-demand churn predictions.
 ```bash
 make frontend-dev
 ```
@@ -759,7 +759,7 @@ http://localhost:5000
     - Analyzing recall across different thresholds.
     - Selecting a threshold that meets business requirements.
     - Balancing precision-recall trade-offs.
-- Optimal threshold selection allowed the model to achieve 90% recall for the churn class.
+- Optimal threshold selection allowed the model to achieve \~90% recall for the churn class.
 
 <img title="Threshold Optimization" src="https://github.com/user-attachments/assets/6753c497-6e2b-4b90-bcc3-5a1be9fdc453">
 

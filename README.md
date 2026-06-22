@@ -201,7 +201,6 @@ data/raw/customer-churn-raw.csv
 3. Clean the Dataset
 - Typical cleaning steps include :
     - Removing Invalid Records
-    - Encoding Categorical Features
     - Trimming Whitespace
     - Type Conversions
 4. Export Processed Dataset

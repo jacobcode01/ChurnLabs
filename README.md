@@ -1458,20 +1458,18 @@ ChurnLabs/
 │       │
 │       └── __init__.py
 │
-├── docker-compose.yaml           # Docker orchestration for backend and frontend
-├── Makefile                      # Project commands (MLflow, FastAPI, React, Docker, etc.)
-├── pyproject.toml                # Python project configuration
-├── uv.lock                       # Dependency lock file
-├── netlify.toml                  # Netlify deployment configuration
-├── mlflow.db                     # MLflow experiment tracking database (ignored by Git)
-│
 ├── .dockerignore                 # Backend Dockerignore rules
+├── .env.example                  # Example environment variables for backend
 ├── .gitignore                    # Project-specific Git ignore rules
 ├── .python-version               # Python version specification
-├── .env.example                  # Example environment variables for backend
-│
 ├── LICENSE                       # License specifying permissions and usage rights
-└── README.md                     # Project documentation
+├── Makefile                      # Project commands (MLflow, FastAPI, React, Docker, etc.)
+├── README.md                     # Project documentation
+├── docker-compose.yaml           # Docker orchestration for backend and frontend
+├── mlflow.db                     # MLflow experiment tracking database (ignored by Git)
+├── netlify.toml                  # Netlify deployment configuration
+├── pyproject.toml                # Python project configuration
+└── uv.lock                       # Dependency lock file
 ```
 
 <hr>

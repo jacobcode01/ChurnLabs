@@ -897,6 +897,11 @@ results = {metric.replace('test_', ''): [np.mean(scores), np.std(scores)] for me
 results_df = pd.DataFrame(results, index=['mean', 'std']).T
 results_df
 ```
+</details>
+
+<details>
+<summary>Click Here to view Analysis</summary>
+&nbsp;
 
 | | mean | std |
 |:---:|:---:|:---:|
@@ -954,47 +959,134 @@ Achieve F1 Score > 0.00
 ```python
 # Multi-Model Dictionary 
 models = {
-    'dummy_classifier': DummyClassifier(strategy='most_frequent', random_state=42),
-    'logistic_regression': LogisticRegression(class_weight='balanced', max_iter=1000, random_state=42),
-    'k_neighbors_classifier': KNeighborsClassifier(n_jobs=-1),
-    'support_vector_classifier': SVC(class_weight='balanced', probability=True, random_state=42),
-    'decision_tree_classifier': DecisionTreeClassifier(class_weight='balanced', random_state=42),
-    'random_forest_classifier': RandomForestClassifier(class_weight='balanced', random_state=42, n_jobs=-1),
-    'gradient_boosting_classifier': GradientBoostingClassifier(random_state=42)
+    'DC': DummyClassifier(strategy='most_frequent', random_state=42),
+    'LR': LogisticRegression(class_weight='balanced', max_iter=1000, random_state=42),
+    'KNN': KNeighborsClassifier(n_jobs=-1),
+    'SVC': SVC(class_weight='balanced', probability=True, random_state=42),
+    'DT': DecisionTreeClassifier(class_weight='balanced', random_state=42),
+    'RF': RandomForestClassifier(class_weight='balanced', random_state=42, n_jobs=-1),
+    'GB': GradientBoostingClassifier(random_state=42)
 }
 ```
 ```python
-# Computing Average Metrics through Cross-Validation
+# Computing Classification Metrics through Cross-Validation
 results = {}
 
+skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+
+scoring = {
+    'accuracy': 'accuracy',
+    'precision': 'precision',
+    'recall': 'recall',
+    'f1': 'f1',
+    'roc_auc': 'roc_auc',
+    'pr_auc': 'average_precision'
+}
+
 for name, model in models.items():
-    
+
     pipe = Pipeline(steps=[
         ('preprocessor', ctf),
         ('model', model)
     ])
 
-    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    cv_results = cross_validate(estimator=pipe, X=X_train, y=y_train, cv=skf, scoring=scoring, n_jobs=-1, return_train_score=False)
 
-    cv_results = cross_validate(
-        estimator=pipe,
-        X=X_train,
-        y=y_train,
-        cv=skf,
-        scoring=['accuracy', 'precision', 'recall', 'f1', 'roc_auc', 'average_precision'],
-        n_jobs=-1
-    )
+    results[name] = {metric: cv_results[f'test_{metric}'].mean() for metric in scoring}
 
-    model_results = {}
-    for metric in ['accuracy', 'precision', 'recall', 'f1', 'roc_auc', 'average_precision']:
-        model_results[f"{metric}_mean"] = cv_results[f"test_{metric}"].mean()
-        model_results[f"{metric}_std"] = cv_results[f"test_{metric}"].std()
+    recall_mean, recall_std = cv_results['test_recall'].mean(), cv_results['test_recall'].std()
+    prauc_mean, prauc_std = cv_results['test_pr_auc'].mean(), cv_results['test_pr_auc'].std()
+    rocauc_mean, rocauc_std = cv_results['test_roc_auc'].mean(), cv_results['test_roc_auc'].std()
+    f1_mean, f1_std = cv_results['test_f1'].mean(), cv_results['test_f1'].std()
+    prec_mean, prec_std = cv_results['test_precision'].mean(), cv_results['test_precision'].std()
+    acc_mean, acc_std = cv_results['test_accuracy'].mean(), cv_results['test_accuracy'].std()
 
-    results[name] = model_results
+    print()
+    print(f'Model : {name}')
+    print('-' * 40)
+    print(f'Recall    : {recall_mean:.2f}')
+    print(f'PR-AUC    : {prauc_mean:.2f}')
+    print(f'ROC-AUC   : {rocauc_mean:.2f}')
+    print(f'F1-Score  : {f1_mean:.2f}')
+    print(f'Precision : {prec_mean:.2f}')
+    print(f'Accuracy  : {acc_mean:.2f}')
 
 results_df = pd.DataFrame(results).T
 results_df
 ```
+</details>
+
+<details>
+<summary>Click Here to view Analysis</summary>
+&nbsp;
+
+```
+Model : DC
+----------------------------------------
+Recall    : 0.00
+PR-AUC    : 0.27
+ROC-AUC   : 0.50
+F1-Score  : 0.00
+Precision : 0.00
+Accuracy  : 0.73
+
+Model : LR
+----------------------------------------
+Recall    : 0.80
+PR-AUC    : 0.66
+ROC-AUC   : 0.85
+F1-Score  : 0.63
+Precision : 0.52
+Accuracy  : 0.75
+
+Model : KNN
+----------------------------------------
+Recall    : 0.53
+PR-AUC    : 0.52
+ROC-AUC   : 0.78
+F1-Score  : 0.55
+Precision : 0.56
+Accuracy  : 0.77
+
+Model : SVC
+----------------------------------------
+Recall    : 0.79
+PR-AUC    : 0.60
+ROC-AUC   : 0.83
+F1-Score  : 0.62
+Precision : 0.52
+Accuracy  : 0.75
+
+Model : DT
+----------------------------------------
+Recall    : 0.49
+PR-AUC    : 0.38
+ROC-AUC   : 0.65
+F1-Score  : 0.49
+Precision : 0.50
+Accuracy  : 0.73
+
+Model : RF
+----------------------------------------
+Recall    : 0.47
+PR-AUC    : 0.63
+ROC-AUC   : 0.83
+F1-Score  : 0.55
+Precision : 0.64
+Accuracy  : 0.79
+
+Model : GB
+----------------------------------------
+Recall    : 0.51
+PR-AUC    : 0.66
+ROC-AUC   : 0.85
+F1-Score  : 0.58
+Precision : 0.66
+Accuracy  : 0.80
+```
+
+<img title="Model Comparison" src="https://github.com/user-attachments/assets/6952695b-93b5-461c-8bf5-97230941a66f" />
+
 </details>
 
 <hr>
@@ -1020,6 +1112,12 @@ pipe = Pipeline(steps=[
 # Cross Val Predict
 y_pred_cv = cross_val_predict(estimator=pipe, X=X_train, y=y_train, cv=skf, method='predict', n_jobs=-1)
 ```
+</details>
+
+<details>
+<summary>Click Here to view Analysis</summary>
+&nbsp;
+
 ```python
 # Classification Report
 print(classification_report(y_train, y_pred_cv, target_names=['No', 'Yes']))
@@ -1046,7 +1144,9 @@ ax[1].grid(visible=False)
 plt.tight_layout()
 plt.show()
 ```
+
 <img title="Confusion Matrix Plot" src="https://github.com/user-attachments/assets/31c58541-5cc3-420e-883d-4796b7499c35">
+
 </details>
 
 <hr>
@@ -1078,6 +1178,12 @@ coefficients = pipe.named_steps['model'].coef_[0]
 # Feature Importance DataFrame
 importance_df = pd.DataFrame({'feature': features, 'importance': coefficients}).sort_values(by='importance', ascending=False)
 ```
+</details>
+
+<details>
+<summary>Click Here to view Analysis</summary>
+&nbsp;
+
 ```python
 # Feature Importance Plot
 plt.figure(figsize=(12, 6))
@@ -1090,7 +1196,9 @@ plt.grid(axis='both', linestyle='--', alpha=1)
 plt.tight_layout()
 plt.show()
 ```
+
 <img title="Feature Importance Plot" src="https://github.com/user-attachments/assets/fe447aab-ed24-4d03-9de2-4414e50bd441">
+
 </details>
 
 <hr>
@@ -1151,6 +1259,12 @@ y_proba_cv = cross_val_predict(estimator=pipe, X=X_train, y=y_train, cv=skf, met
 # Best Threshold
 y_pred_best = (y_proba_cv >= best_threshold).astype(int)
 ```
+</details>
+
+<details>
+<summary>Click Here to view Analysis</summary>
+&nbsp;
+
 ```python
 # Classification Report
 print(classification_report(y_train, y_pred_best, target_names=['No', 'Yes']))
@@ -1177,7 +1291,9 @@ ax[1].grid(visible=False)
 plt.tight_layout()
 plt.show()
 ```
+
 <img title="Confusion Matrix Plot" src="https://github.com/user-attachments/assets/75c9791d-a952-4d85-b443-497e89b82b4c">
+
 </details>
 
 <hr>
@@ -1197,6 +1313,12 @@ pipe.fit(X_train, y_train)
 y_test_proba = pipe.predict_proba(X_test)[:, 1]
 y_test_pred = (y_test_proba >= best_threshold).astype(int)
 ```
+</details>
+
+<details>
+<summary>Click Here to view Analysis</summary>
+&nbsp;
+
 ```python
 # Classification Report
 print(classification_report(y_test, y_test_pred, target_names=['No', 'Yes']))

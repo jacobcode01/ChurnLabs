@@ -114,6 +114,11 @@ http://localhost:8000
 - Enables targeted retention by identifying customers most likely to churn, improving retention effectiveness.
 - Deployed a real-time churn prediction system, enabling immediate churn risk assessment during decision making.
 
+## Impact
+- Raised churn recall from 80% to 90% by tuning the decision threshold, surfacing more at-risk customers for retention (89% recall on the held-out test set).
+- Prioritized recall over precision by design — in churn, a wasted retention offer costs far less than losing a saveable customer.
+- Deployed an end-to-end, on-demand churn prediction system (FastAPI + React) for immediate churn-risk scoring at decision time.
+
 <hr>
 
 ## Setup
@@ -1279,7 +1284,7 @@ ChurnLabs/
 │   ├── Dockerfile                # Dockerfile for the frontend container
 │   ├── nginx.conf                # Nginx configuration for serving the frontend
 │   ├── package.json              # Node.js dependencies
-|   ├── package-lock.json         # Dependency lock file
+│   ├── package-lock.json         # Dependency lock file
 │   ├── index.html                
 │   ├── vite.config.ts            
 │   ├── eslint.config.js          
@@ -1293,7 +1298,7 @@ ChurnLabs/
 │
 ├── mlartifacts/                  # MLflow artifacts storage (ignored by Git)
 │   └── ...                       # Auto-generated MLflow run directories
-|
+│
 ├── notebooks/                    # Jupyter notebooks for experimentation
 │   ├── 01_eda.ipynb              # Exploratory data analysis
 │   └── 02_model.ipynb            # Model experimentation and MLflow tracking
@@ -1304,38 +1309,38 @@ ChurnLabs/
 │   └── run_training.py           # Model training pipeline
 │
 ├── src/
-│   |
+│   │
 │   └── churnlabs/
 │       │
 │       ├── core/                 # Core utility module
-|       |   ├── __init__.py
+│       │   ├── __init__.py
 │       │   ├── config.py
 │       │   ├── logger.py
 │       │   └── settings.py
 │       │
 │       ├── data/                 # Data loading and preprocessing module
-|       |   ├── __init__.py
+│       │   ├── __init__.py
 │       │   ├── ingestion.py
 │       │   ├── loaders.py
 │       │   ├── preprocessor.py
 │       │   └── export.py
 │       │
 │       ├── features/             # Feature engineering module
-|       |   ├── __init__.py
+│       │   ├── __init__.py
 │       │   └── split.py
 │       │
 │       ├── models/               # Model training and evaluation module
-|       |   ├── __init__.py
-│       |   ├── artifact.py
-│       |   ├── builder.py
-│       |   ├── encoder.py
-│       |   ├── evaluation.py
-│       |   ├── pipeline.py
-│       |   ├── transformer.py
-|       |   ├── loader.py
-│       |   └── uploader.py
-|       |
-|       └── __init__.py
+│       │   ├── __init__.py
+│       │   ├── artifact.py
+│       │   ├── builder.py
+│       │   ├── encoder.py
+│       │   ├── evaluation.py
+│       │   ├── pipeline.py
+│       │   ├── transformer.py
+│       │   ├── loader.py
+│       │   └── uploader.py
+│       │
+│       └── __init__.py
 │
 ├── docker-compose.yaml           # Docker orchestration for backend and frontend
 ├── Makefile                      # Project commands (MLflow, FastAPI, React, Docker, etc.)

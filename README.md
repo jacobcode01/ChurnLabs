@@ -1,10 +1,10 @@
-<h3 align="center">ChurnLabs : Customer Churn Prediction System</h3>
+<h3 align="center" id="top">ChurnLabs : Customer Churn Prediction System</h3>
 
 <div align="center">
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-00C7B7?style=flat&logo=netlify&logoColor=white)](https://churnlabs.netlify.app)
 [![API Docs](https://img.shields.io/badge/API-Docs-009688?style=flat&logo=fastapi&logoColor=white)](https://churnlabs.onrender.com/docs)
-[![Docker Hub](https://img.shields.io/badge/Docker%20Hub-Image-2496ED?style=flat&logo=docker&logoColor=white)](https://hub.docker.com/r/themrityunjaypathak)
+[![Docker Hub](https://img.shields.io/badge/Docker%20Hub-Image-2496ED?style=flat&logo=docker&logoColor=white)](https://hub.docker.com/u/themrityunjaypathak)
 [![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
 [![Scikit-Learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
 [![MLflow](https://img.shields.io/badge/MLflow-0194E2?style=flat&logo=mlflow&logoColor=white)](https://mlflow.org/)
@@ -1360,7 +1360,6 @@ ChurnLabs/
 
 <div align="left">
   
-**[`^        Scroll to Top       ^`](#churnlabs--customer-churn-prediction)**
+**[`^        Scroll to Top       ^`](#top)**
 
 </div>
-

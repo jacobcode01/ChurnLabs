@@ -198,8 +198,8 @@ data/raw/customer-churn-raw.csv
     - Missing Values
     - Data Types
     - Categorical Levels
-3. Clean the Dataset
-- Typical cleaning steps include :
+3. Clean & Optimize the Dataset
+- Typical preprocessing steps include :
     - Removing Invalid Records
     - Trimming Whitespace
     - Type Conversions
@@ -484,7 +484,7 @@ make compose-down
 <hr>
 
 ## Config-Driven Design
-- This project adopts a config-driven approach to manage data, model, training and artifacts.
+- This project adopts a config-driven approach to manage data, model, training, and artifacts.
 - Instead of hardcoding values inside the codebase, these settings are stored in YAML configuration files.
 - These files are loaded during preprocessing, training, inference and artifacts logging.
 ```
@@ -583,7 +583,7 @@ uv sync
 <hr>
 
 ## Makefile
-- A Makefile is a configuration file used by the `Make` build automation tool.
+- A Makefile is a configuration file used by the `Make` build tool.
 - It defines reusable commands called targets.
 - Each target represents a specific task, such as :
     - Installing Dependencies
@@ -932,7 +932,7 @@ pr-auc      0.26
 ```
 - Since the dataset contains approximately 73% non-churn customers, the model achieves 73% accuracy.
 - However, it fails to identify any churners, resulting in `0` Precision, Recall, and F1 score.
-- The ROC AUC of 0.5 confirms that the model has no predictive power and performs as a random guessing.
+- The ROC AUC of 0.5 confirms that the model has no predictive power and performs as random guessing.
 - The `DummyClassifier` makes exactly the same prediction in every fold.
 - So every fold produces identical metrics, and that's why standard deviation is equal to 0.
 - This confirms our pipeline and cross-validation setup behave as expected and no obvious leakage exists.
@@ -1010,9 +1010,6 @@ for name, model in models.items():
     print(f'F1-Score  : {f1_mean:.2f}')
     print(f'Precision : {prec_mean:.2f}')
     print(f'Accuracy  : {acc_mean:.2f}')
-
-results_df = pd.DataFrame(results).T
-results_df
 ```
 </details>
 
@@ -1245,7 +1242,7 @@ print(f"Best Threshold: {best_threshold:.4f}")
 
 <hr>
 
-### 10. Performance Evaluation using Tuned Threshold
+### 10. Performance Evaluation with Tuned Threshold
 
 <details>
 <summary>Click Here to view Code Snippet</summary>

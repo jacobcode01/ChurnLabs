@@ -1089,6 +1089,11 @@ Accuracy  : 0.80
 <hr>
 
 ### 7. Select `LogisticRegression` as Final Model
+- Tied for the best PR-AUC (0.66) and ROC-AUC (0.85) across all seven models.
+- Achieved the highest recall (0.80) and F1 (0.63) at the default threshold.
+- Simplest and most interpretable among the top models.
+- Signed coefficients show which features push a customer toward churn.
+- Gradient Boosting matched it on ranking metrics but added complexity with no gain on the recall-first objective.
 
 <details>
 <summary>Click Here to view Code Snippet</summary>

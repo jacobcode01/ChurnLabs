@@ -1114,6 +1114,7 @@ y_pred_cv = cross_val_predict(estimator=pipe, X=X_train, y=y_train, cv=skf, meth
 <details>
 <summary>Click Here to view Analysis</summary>
 	
+&nbsp;
 - Tied for the best PR-AUC (0.66) and ROC-AUC (0.85) across all seven models.
 - Achieved the highest recall (0.80) and F1 (0.63) at the default threshold.
 - Simplest and most interpretable among the top models.

@@ -130,8 +130,7 @@ make install-dev
 <hr>
 
 ### 3. Run Data Ingestion
-- This step extracts raw customer data from the PostgreSQL database,
-- And stores it locally for further processing.
+- This step extracts raw customer data from a PostgreSQL database and stores it locally for further processing.
 - Run the ingestion pipeline :
 ```bash
 make ingest
@@ -237,7 +236,7 @@ artifacts/metrics/
 <hr>
 
 ### 6. Start the FastAPI Backend
-- The FastAPI server loads the trained model and exposes endpoints for inference and system health.
+- The FastAPI server exposes endpoints for serving predictions, health checks, and model metadata.
 - Run the FastAPI backend server :
 ```bash
 make api-dev
@@ -284,7 +283,7 @@ Access the live API documentation [here](https://churnlabs.onrender.com/docs) or
 ```bash
 make frontend-dev
 ```
-- This command installs the Node dependencies and starts the React development server at :
+- This command installs the Node.js dependencies and starts the React development server at :
 ```
 http://localhost:5173
 ```
@@ -317,7 +316,7 @@ http://localhost:5173
 > VITE_API_URL=your_base_api_url
 > ```
 >
-> This variable defines the base API url that the React frontend will use for generating predictions.
+> This variable defines the base API URL that the React frontend will use for generating predictions.
 >
 > Without this variable, the frontend will still attempt to connect to the local API (`localhost:8000`).
 
@@ -401,7 +400,6 @@ themrityunjaypathak/churnlabs-frontend:v1
 ```bash
 make compose-down
 ```
-- It frees up system resources and shuts down the application services.
 
 <hr>
 

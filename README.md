@@ -451,10 +451,6 @@ threshold:
 ```
 - Changing this value updates the model behavior without touching the training pipeline.
 
-### 3. Scalable Project Structure
-- As the project grows, new models or parameters can be added easily.
-- Simply extend the configuration files without modifying the core codebase.
-
 <hr>
 
 ## Dependency Management
@@ -472,11 +468,12 @@ threshold:
 ### Why use `uv` over `pip`?
 
 ### 1. Faster Dependency Installation
-- `uv` is significantly faster than `pip` due to its optimized resolver and parallel installation.
+- `uv` is significantly faster than `pip` due to its optimized resolver and parallel package installation.
 - This reduces setup time, especially for large projects with many dependencies.
 ```bash
 uv sync
 ```
+- In this project, uv sync reads from `uv.lock` and installs all dependencies in one step.
 
 ### 2. Reproducible Environments
 - Dependencies are locked in the `uv.lock` file.

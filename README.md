@@ -224,8 +224,8 @@ The system follows a local-first loading strategy with remote fallback :
 artifacts/models/
 artifacts/metrics/
 ```
-- If present → load from local storage.
-- If not present → fetch from Hugging Face.
+- If present, load from local storage.
+- If not present, fetch from Hugging Face.
 
 ### Why this design?
 - Enables seamless development using local artifacts.
@@ -247,7 +247,7 @@ http://localhost:8000/docs
 ```
 - This interactive Swagger UI allows you to test endpoints directly.
 
-> [!TIP]
+> [!IMPORTANT]
 > When deploying the backend on Render, make sure to configure the secrets in the Render dashboard.
 >
 > Navigate to : **Render Dashboard → Your Service → Environment → Environment Variables**
@@ -289,7 +289,7 @@ http://localhost:5173
 ```
 - The frontend communicates with the FastAPI backend to send requests and display predictions.
 
-> [!TIP]
+> [!IMPORTANT]
 > The project includes a `netlify.toml` file for seamless frontend deployment on Netlify.
 >
 > ```toml

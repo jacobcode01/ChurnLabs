@@ -57,8 +57,6 @@ make api-dev         # Start FastAPI backend → http://localhost:8000
 make frontend-dev    # Start React frontend → http://localhost:5173
 ```
 
----
-
 **Path B : You don't have a PostgreSQL database (use local dataset instead)**
 ```bash
 git clone https://github.com/themrityunjaypathak/ChurnLabs.git
@@ -128,12 +126,6 @@ pip install uv
 ```bash
 make install-dev
 ```
-
-### What happens during this process?
-- Create an isolated virtual environment (`.venv`).
-- Install all project dependencies (including development tools).
-- Sync package versions with `pyproject.toml` and `uv.lock`.
-- Ensure a fully reproducible and consistent environment.
 
 <hr>
 
@@ -233,8 +225,8 @@ The system follows a local-first loading strategy with remote fallback :
 artifacts/models/
 artifacts/metrics/
 ```
-- If present ➜ load from local storage.
-- If not present ➜ fetch from Hugging Face.
+- If present → load from local storage.
+- If not present → fetch from Hugging Face.
 
 ### Why this design?
 - Enables seamless development using local artifacts.
@@ -244,30 +236,7 @@ artifacts/metrics/
 
 <hr>
 
-### 6. MLflow Experiment Tracking
-- The project uses MLflow to track machine learning experiments.
-- MLflow allows you to log :
-    - Model Parameters
-    - Evaluation Metrics
-    - Experiment Artifacts
-- Start the MLflow backend server :
-```bash
-make mlflow-ui
-```
-- Once the MLflow server starts, open the MLflow dashboard at :
-```
-http://localhost:5000
-```
-- Inside the dashboard you can :
-    - Compare Multiple Experiment Runs
-    - Visualize Evaluation Metrics
-    - Inspect Experiment Artifacts
-
-<img title="MLflow Dashboard" src="https://github.com/user-attachments/assets/35a086b4-f3af-48fe-9a79-c85eda64ce5f">
-
-<hr>
-
-### 7. Start the FastAPI Backend
+### 6. Start the FastAPI Backend
 - The FastAPI server loads the trained model and exposes endpoints for inference and system health.
 - Run the FastAPI backend server :
 ```bash
@@ -329,7 +298,7 @@ Access the live API documentation [here](https://churnlabs.onrender.com/docs) or
 
 <hr>
 
-### 8. Start the React Frontend
+### 7. Start the React Frontend
 - The frontend provides an interactive UI for generating on-demand churn predictions.
 ```bash
 make frontend-dev
@@ -377,7 +346,7 @@ Access the live application [here](https://churnlabs.netlify.app) or Click on th
 
 <hr>
 
-### 9. Start Entire Application with Docker
+### 8. Start Entire Application with Docker
 - Instead of running services manually, you can start the entire application using Docker.
 ```bash
 make compose-up-build
@@ -397,7 +366,7 @@ http://localhost:8000
 
 <hr>
 
-### 10. Push Entire Application to Docker Hub
+### 9. Push Entire Application to Docker Hub
 - This step builds and pushes both the backend and frontend images to Docker Hub using `docker-compose.yaml`.
 - Ensure Docker is installed and running.
 - Make sure you are logged in to Docker Hub using :
@@ -446,7 +415,7 @@ themrityunjaypathak/churnlabs-frontend:v1
 
 <hr>
 
-### 11. Stop the Application
+### 10. Stop the Application
 - This step stops and removes all running containers.
 ```bash
 make compose-down

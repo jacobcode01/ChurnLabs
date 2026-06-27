@@ -56,8 +56,6 @@ make train           # Train the model
 make api-dev         # Start FastAPI backend → http://localhost:8000
 make frontend-dev    # Start React frontend → http://localhost:5173
 ```
-> [!NOTE]
-> Ensure that the PostgreSQL database is running and correctly configured before running ingestion.
 
 **Path B : You don't have PostgreSQL (use local dataset instead)**
 ```bash
@@ -78,9 +76,6 @@ make train         # Train the model
 make api-dev       # Start FastAPI backend → http://localhost:8000
 make frontend-dev  # Start React frontend → http://localhost:5173
 ```
-
-> [!NOTE]
-> This setup will use the local dataset instead of the PostgreSQL database and proceed with preprocessing.
 
 > [!TIP]
 > You can also start the entire application using Docker :

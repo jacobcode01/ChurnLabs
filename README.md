@@ -33,59 +33,54 @@
 <hr>
 
 ## Problem Statement
-- Many companies struggle to accurately identify customers who are likely to discontinue their services.
-- Missed churn signals lead to customer attrition, directly impacting revenue and long-term business growth.
-- This project aims to identify high-risk customers early, enabling businesses to take proactive retention measures.
+- Telecom companies lose customers every month without knowing who is about to leave until it's too late.
+- Identifying churners early allows businesses to step in with the right offer before the customer cancels.
+- This project predicts which customers are likely to churn, so retention teams can act early instead of reacting late.
 
 <hr>
 
 ## Quick Start
-- Run the entire project locally with a few simple commands :
+- Choose the setup path that fits your situation :
+
+**Path A : You have a PostgreSQL database configured**
 ```bash
 git clone https://github.com/themrityunjaypathak/ChurnLabs.git
 cd ChurnLabs
 
 make install-dev     # Install dependencies and setup virtual environment
 
-make ingest          # Fetch data from PostgreSQL (or skip if using local dataset)
+make ingest          # Fetch data from PostgreSQL
 make preprocess      # Clean and transform the data
 make train           # Train the model
 
-make api-dev         # Start FastAPI backend
-make frontend-dev    # Start React frontend
+make api-dev         # Start FastAPI backend → http://localhost:8000
+make frontend-dev    # Start React frontend → http://localhost:5173
 ```
-- Once the services are running, open the following URLs :
-
-**React Frontend**
-```
-http://localhost:5173
-```
-**FastAPI Backend**
-```
-http://localhost:8000
-```
-
 > [!NOTE]
 > Ensure that the PostgreSQL database is running and correctly configured before running ingestion.
 
-> [!IMPORTANT]
-> The default pipeline expects data to be ingested from a configured PostgreSQL database.
->
-> If you don't have a PostgreSQL database configured, you can use a local dataset instead :
->
-> - Download the dataset from [Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
->
-> - Place the dataset at : `data/raw/customer-churn-raw.csv`
->
-> - Ensure the filename matches exactly as : `customer-churn-raw.csv`
-> 
-> Then run the preprocessing pipeline :
->
-> ```bash
-> make preprocess
-> ```
->
-> This will use the local dataset instead of the PostgreSQL database and proceed with preprocessing.
+**Path B : You don't have PostgreSQL (use local dataset instead)**
+```bash
+git clone https://github.com/themrityunjaypathak/ChurnLabs.git
+cd ChurnLabs
+
+make install-dev   # Install dependencies and setup virtual environment
+```
+Then download the dataset from [Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn) and place it at :
+```
+data/raw/customer-churn-raw.csv
+```
+Then continue :
+```bash
+make preprocess    # Clean and transform the data
+make train         # Train the model
+
+make api-dev       # Start FastAPI backend → http://localhost:8000
+make frontend-dev  # Start React frontend → http://localhost:5173
+```
+
+> [!NOTE]
+> This setup will use the local dataset instead of the PostgreSQL database and proceed with preprocessing.
 
 > [!TIP]
 > You can also start the entire application using Docker :
@@ -1089,11 +1084,6 @@ Accuracy  : 0.80
 <hr>
 
 ### 7. Select `LogisticRegression` as Final Model
-- Tied for the best PR-AUC (0.66) and ROC-AUC (0.85) across all seven models.
-- Achieved the highest recall (0.80) and F1 (0.63) at the default threshold.
-- Simplest and most interpretable among the top models.
-- Signed coefficients show which features push a customer toward churn.
-- Gradient Boosting matched it on ranking metrics but added complexity with no gain on the recall-first objective.
 
 <details>
 <summary>Click Here to view Code Snippet</summary>

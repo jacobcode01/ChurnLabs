@@ -248,17 +248,6 @@ http://localhost:8000/docs
 ```
 - This interactive Swagger UI allows you to test endpoints directly.
 
-### API Endpoints
-The FastAPI server exposes the following endpoints :
-- **1. Root Endpoint (`/`)**
-	- Returns a simple response confirming that the API is running.
-- **2. Health Check Endpoint (`/health`)**
-	- Verifies that the API service is active and the model is successfully loaded.
-- **3. Model Metadata Endpoint (`/info`)**
-	- Returns information about the trained model, like model version, training timestamp, and other metadata.
-- **4. Churn Prediction Endpoint (`/predict`)**
-	- Accepts customer data as input and returns the churn probability, predicted class, and the decision threshold.
-
 > [!TIP]
 > When deploying the backend on Render, make sure to configure the secrets in the Render dashboard.
 >

@@ -331,7 +331,7 @@ Access the live application [here](https://churnlabs.netlify.app) or Click on th
 ```bash
 make compose-up-build
 ```
-- Docker compose will build and start all required services for the application using `docker-compose.yaml`.
+- Docker Compose will build and start all required services for the application using `docker-compose.yaml`.
 
 ### React Frontend
 ```
@@ -406,7 +406,7 @@ make compose-down
 ## Config-Driven Design
 - This project adopts a config-driven approach to manage data, model, training, and artifacts.
 - Instead of hardcoding values inside the codebase, these settings are stored in YAML configuration files.
-- These files are loaded during preprocessing, training, inference and artifacts logging.
+- These files are loaded during preprocessing, training, inference, and artifacts logging.
 ```
 config/
 ├── data-config.yaml
@@ -418,7 +418,7 @@ config/
 
 <img title="Config Files" src="https://github.com/user-attachments/assets/f7b07aca-ac4d-4f22-b7aa-a822d8f674e3">
 
-### Why this is useful?
+### Why Config-Driven design?
 
 ### 1. Cleaner Code
 - Configuration values are separated from pipeline logic.
@@ -451,10 +451,7 @@ threshold:
 ```
 - Changing this value updates the model behavior without touching the training pipeline.
 
-### 3. Better Reproducibility
-- All settings are stored in configuration files, making it easier to reproduce experiments consistently.
-
-### 4. Scalable Project Structure
+### 3. Scalable Project Structure
 - As the project grows, new models or parameters can be added easily.
 - Simply extend the configuration files without modifying the core codebase.
 

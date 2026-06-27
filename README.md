@@ -524,12 +524,14 @@ make help
 ```
 - This will display all supported tasks defined in the Makefile.
 
-### Setup `Make` for Windows
-- Windows does not include the `Make` utility by default.
-- The easiest and most reliable way to use `Make` is through WSL.
+### Install `Make` on Windows via WSL
 
 <details>
 <summary>Click Here for More Details</summary>
+<br>
+	
+- Windows does not include the `Make` utility by default.
+- The easiest and most reliable way to use `Make` is through WSL.
 
 ### Step 1 : Open PowerShell as Administrator
 - Open the Start Menu
@@ -593,7 +595,7 @@ Built for x86_64-pc-linux-gnu
 
 </details>
 
-### Setup WSL in VS Code
+### Use `Make` in VS Code via WSL
 
 <details>
 <summary>Click Here for More Details</summary>

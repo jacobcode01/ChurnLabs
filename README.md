@@ -632,7 +632,7 @@ Ubuntu (WSL)
 ## Experiment Tracking
 - This project uses MLflow to track machine learning experiments, compare models, and log artifacts.
 - MLflow helps maintain reproducibility and transparency by tracking model parameters, evaluation metrics, etc.
-- Instead of manually tracking result in notebooks,
+- Instead of manually tracking results in notebooks,
 - MLflow provides a centralized dashboard to analyze and compare model performance.
 
 ### Start the MLflow Dashboard
@@ -686,10 +686,10 @@ http://localhost:5000
 
 ### Logged Artifacts
 - MLflow also stores experiment artifacts generated during training.
-- Some of the artifacts logged in this project include confusion matrix & classification reports.
+- Some of the artifacts logged in this project include confusion matrix and classification reports.
 - These artifacts help analyze model behavior and support model selection.
 
-> [!IMPORTANT]
+> [!NOTE]
 > You can also reset MLflow experiments and remove stored runs for newer ones.
 >
 > To reset MLflow experiments, run this command from the project root directory :

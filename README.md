@@ -57,6 +57,8 @@ make api-dev         # Start FastAPI backend → http://localhost:8000
 make frontend-dev    # Start React frontend → http://localhost:5173
 ```
 
+---
+
 **Path B : You don't have a PostgreSQL database (use local dataset instead)**
 ```bash
 git clone https://github.com/themrityunjaypathak/ChurnLabs.git

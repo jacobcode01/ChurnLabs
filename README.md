@@ -57,12 +57,12 @@ make api-dev         # Start FastAPI backend → http://localhost:8000
 make frontend-dev    # Start React frontend → http://localhost:5173
 ```
 
-**Path B : You don't have PostgreSQL (use local dataset instead)**
+**Path B : You don't have a PostgreSQL database (use local dataset instead)**
 ```bash
 git clone https://github.com/themrityunjaypathak/ChurnLabs.git
 cd ChurnLabs
 
-make install-dev   # Install dependencies and setup virtual environment
+make install-dev     # Install dependencies and setup virtual environment
 ```
 Then download the dataset from [Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn) and place it at :
 ```
@@ -70,11 +70,11 @@ data/raw/customer-churn-raw.csv
 ```
 Then continue :
 ```bash
-make preprocess    # Clean and transform the data
-make train         # Train the model
+make preprocess      # Clean and transform the data
+make train           # Train the model
 
-make api-dev       # Start FastAPI backend → http://localhost:8000
-make frontend-dev  # Start React frontend → http://localhost:5173
+make api-dev         # Start FastAPI backend → http://localhost:8000
+make frontend-dev    # Start React frontend → http://localhost:5173
 ```
 
 > [!TIP]
@@ -147,26 +147,6 @@ make ingest
 - Connects to a PostgreSQL database using credentials stored in `.env`.
 - Fetches customer churn data required for model training and evaluation.
 - Stores raw dataset locally at `data/raw/customer-churn-raw.csv`.
-
-> [!NOTE]
-> Ensure that the PostgreSQL database is running and correctly configured before running ingestion.
-
-> [!IMPORTANT]
-> The ingestion step requires access to a PostgreSQL database.
->
-> If you do not have access to the original database, you have two options :
->
-> 1. Use your own PostgreSQL database
->    - Upload the [dataset](https://www.kaggle.com/datasets/blastchar/telco-customer-churn) to your database.
->    - Configure credentials in the `.env` file.
->    - Run `make ingest` to ingest the data locally.
->
-> 2. Skip ingestion and use dataset directly
->    - Download the [dataset](https://www.kaggle.com/datasets/blastchar/telco-customer-churn) from Kaggle.
->    - Place it inside `data/raw/` as `customer-churn-raw.csv`.
->    - Skip ingestion and continue with preprocessing and training.
->
-> This ensures the project remains fully reproducible even without database access.
 
 <hr>
 

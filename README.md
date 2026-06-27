@@ -509,7 +509,7 @@ uv sync
 ### Why use a Makefile?
 - Using a Makefile improves the development workflow by simplifying command execution.
 - Instead of running long commands like :
-```python
+```bash
 uv run python scripts/run_training.py
 ```
 - You can simply run :
@@ -589,7 +589,7 @@ GNU Make 4.x
 Built for x86_64-pc-linux-gnu
 ```
 - This confirms that `Make` is installed successfully.
-- Remember `Make` is available only inside the WSL terminal, not in Windows Command Prompt or PowerShell.
+- Remember, `Make` is available only inside the WSL terminal, not in Windows Command Prompt or PowerShell.
 
 </details>
 
@@ -616,6 +616,12 @@ Built for x86_64-pc-linux-gnu
 ```
 Ubuntu (WSL)
 ```
+
+### Step 4 : Open Project in WSL
+- In VS Code, press `Ctrl + Shift + P`
+- Type `WSL: Open Folder in WSL`
+- Navigate to your project folder
+- This ensures all terminal commands run inside WSL, not Windows
 
 </details>
 

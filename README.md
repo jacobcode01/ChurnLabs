@@ -108,9 +108,6 @@ make frontend-dev    # Start React frontend → http://localhost:5173
 <hr>
 
 ## Impact
-- Boosted recall from 80% to ~90% via threshold tuning, trading precision (52% → 43%) to prioritize catching churners over minimizing false alarms.
-- Validated on a held-out test set with a train/test gap of ≤ 0.03 across all metrics, confirming consistent performance on unseen customers.
-- Early churn signals enable retention teams to intervene with targeted offers before high-risk customers cancel, reducing revenue loss.
 
 <hr>
 

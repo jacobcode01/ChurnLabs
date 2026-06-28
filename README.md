@@ -832,7 +832,7 @@ results_df
 
 <details>
 <summary>Click Here to view Analysis</summary>
-&nbsp;
+<br>
 
 | | mean | std |
 |:---:|:---:|:---:|
@@ -918,7 +918,7 @@ for model in results_df.columns:
 
 <details>
 <summary>Click Here to view Analysis</summary>
-&nbsp;
+<br>
 
 ```
 Model : DC
@@ -1016,7 +1016,7 @@ y_pred_cv = cross_val_predict(estimator=pipe, X=X_train, y=y_train, cv=skf, meth
 
 <details>
 <summary>Click Here to view Analysis</summary>
-&nbsp;
+<br>
 
 ```python
 # Classification Report
@@ -1081,7 +1081,7 @@ importance_df = pd.DataFrame({'feature': features, 'importance': coefficients}).
 
 <details>
 <summary>Click Here to view Analysis</summary>
-&nbsp;
+<br>
 
 ```python
 # Feature Importance Plot
@@ -1099,9 +1099,9 @@ plt.show()
 <img title="Feature Importance Plot" src="https://github.com/user-attachments/assets/655319e5-6844-470e-8708-f95ff33795ac">
 
 ### Feature Importance Interpretation
+Values represent impact on log-odds of churn.
 - 🟢 Positive coefficients → Increase churn risk
 - 🔴 Negative coefficients → Decrease churn risk
-Values represent impact on log-odds of churn.
 
 </details>
 
@@ -1148,6 +1148,15 @@ print(f"Best Threshold: {best_threshold:.4f}")
 ```
 </details>
 
+<details>
+<summary>Click Here to view Analysis</summary>
+<br>
+	
+```
+Best Threshold: 0.3632
+```
+</details>
+
 <hr>
 
 ### 10. Performance Evaluation with Tuned Threshold
@@ -1164,7 +1173,7 @@ y_pred_best = (y_proba_cv >= best_threshold).astype(int)
 
 <details>
 <summary>Click Here to view Analysis</summary>
-&nbsp;
+<br>
 
 ```python
 # Classification Report
@@ -1218,7 +1227,7 @@ y_test_pred = (y_test_proba >= best_threshold).astype(int)
 
 <details>
 <summary>Click Here to view Analysis</summary>
-&nbsp;
+<br>
 
 ```python
 # Classification Report

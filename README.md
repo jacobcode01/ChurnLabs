@@ -506,7 +506,7 @@ uv sync
     - Launching MLflow Dashboard
 - Instead of manually running multiple commands, `Make` executes them automatically.
 
-<img title="Makefile" src="https://github.com/user-attachments/assets/b7a79efd-c5d8-44f3-bb6d-7067f253ec7e">
+<img title="Makefile" src="https://github.com/user-attachments/assets/98e013c1-0285-4b95-b84c-5990d84fd072">
 
 ### Why use a Makefile?
 - Using a Makefile improves the development workflow by simplifying command execution.

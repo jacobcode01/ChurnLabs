@@ -35,16 +35,16 @@
 
 ## Problem Statement
 - Telecom companies lose customers every month without knowing who is about to leave until it's too late.
-- Identifying churners early allows businesses to step in with the right offer before the customer cancels.
-- This project predicts which customers are likely to churn, so retention teams can act early instead of reacting late.
+- Identifying churners early allows businesses to intervene with the right offer before the customer cancels.
+- This project predicts which customers are likely to churn, so retention teams can act before it's too late.
 
 <hr>
 
 ## Overview
-- Built a churn prediction pipeline on 7,000+ customer records from PostgreSQL using Scikit-learn pipeline, ensuring reproducible training and preventing data leakage.
-- Evaluated 7 classification models including a DummyClassifier baseline across 6 metrics, tracking all experiments in MLflow with per-fold metrics, dataset lineage, and model artifacts.
-- Optimized the decision threshold via precision-recall curve, targeting ≥90% recall as a deliberate business decision over default threshold.
-- Deployed a Dockerized FastAPI backend on Render with a React frontend on Netlify, using Hugging Face model artifacts for on-demand risk scoring.
+- Built an end-to-end churn prediction system on 7,000+ customer records from PostgreSQL using Scikit-learn pipeline, ensuring reproducible training and preventing data leakage.
+- Evaluated 7 classification models including a DummyClassifier baseline, selecting Logistic Regression based on Recall, PR-AUC, and F1 score, with all experiments logged in MLflow.
+- Optimized the decision threshold via precision-recall curve from 0.5 to 0.3632, targeting ≥90% recall as a deliberate business decision over accuracy.
+- Deployed a Dockerized FastAPI backend on Render with a React frontend on Netlify, pulling model artifacts directly from Hugging Face Hub for inference without depending on local storage.
 
 <hr>
 

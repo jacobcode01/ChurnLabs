@@ -631,9 +631,7 @@ Ubuntu (WSL)
 
 ## Experiment Tracking
 - This project uses MLflow to track machine learning experiments, compare models, and log artifacts.
-- MLflow helps maintain reproducibility and transparency by tracking model parameters, evaluation metrics, etc.
-- Instead of manually tracking results in notebooks,
-- MLflow provides a centralized dashboard to analyze and compare model performance.
+- MLflow maintains reproducibility and transparency by tracking model parameters, evaluation metrics, and artifacts in a centralized dashboard.
 
 ### Start the MLflow Dashboard
 - To start the MLflow dashboard locally, run the following command from the project root directory :
@@ -654,7 +652,7 @@ http://localhost:5000
 
 ### 1. Model Comparison
 - MLflow makes it easy to compare multiple models trained during experimentation.
-- For this project, several classification models were evaluated, including :
+- For this project, seven classification models were evaluated on the same stratified 5-fold splits, including :
 	- Dummy Classifier 
     - Logistic Regression
     - K-Nearest Neighbors
@@ -662,7 +660,7 @@ http://localhost:5000
     - Decision Tree
     - Random Forest
     - Gradient Boosting
-- The dashboard allows sorting models by evaluation metrics such as :
+- Metrics tracked per model :
     - Accuracy
     - Precision
     - Recall
@@ -674,19 +672,22 @@ http://localhost:5000
 
 ### 2. Threshold Optimization
 - After selecting the best-performing model, another experiment is conducted to optimize the decision threshold.
-- Instead of using the default classification threshold of 0.5,
-- Multiple thresholds were evaluated to improve the model's ability to detect churn.
+- Instead of using the default threshold of 0.5, out-of-fold probabilities from cross-validation were used,
+- To plot the precision-recall curve and identify the threshold that achieves ≥90% recall while maximizing precision within that constraint.
 - These experiments focused on :
     - Analyzing recall across different thresholds.
     - Selecting a threshold that meets business requirements.
     - Balancing precision-recall trade-offs.
 - Optimal threshold selection allowed the model to achieve \~90% recall for the churn class.
+- This approach allows the trade-off between the two thresholds to be compared directly in the MLflow UI.
 
 <img title="Threshold Optimization" src="https://github.com/user-attachments/assets/6753c497-6e2b-4b90-bcc3-5a1be9fdc453">
 
 ### Logged Artifacts
 - MLflow also stores experiment artifacts generated during training.
 - Some of the artifacts logged in this project include confusion matrix and classification reports.
+	- Confusion matrix saved to `plots/` subfolder
+ 	- Classification report saved to `reports/` subfolder
 - These artifacts help analyze model behavior and support model selection.
 
 > [!NOTE]

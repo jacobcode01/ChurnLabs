@@ -108,9 +108,9 @@ make frontend-dev    # Start React frontend → http://localhost:5173
 <hr>
 
 ## Impact
-- Optimized decision threshold to improve recall from 80% to 90%, accepting precision trade-off (52% → 43%) to prioritize catching churners over minimizing false alarms.
-- Validated on a held-out test set with a train/test gap of ≤ 0.03, confirming the model performs consistently on customers it has never seen before.
-- Proactive churn flagging enables retention teams to reach high-risk customers with targeted offers before they cancel.
+- Optimized decision threshold to boost recall from 80% to ~90%, accepting a precision drop (52% → 43%) to catch more churners.
+- Validated on a held-out test set with a train/test gap of ≤ 0.03, confirming consistent performance on unseen customers.
+- Proactive churn flagging gives retention teams to reach high-risk customers with targeted offers before they cancel.
 
 <hr>
 

@@ -108,9 +108,9 @@ make frontend-dev    # Start React frontend → http://localhost:5173
 <hr>
 
 ## Impact
-- Raised churn recall from 80% to 90% by tuning the decision threshold, catching more high-risk customers early.
-- Prioritized recall over precision, treating a false positive as the cheaper retention error.
-- Deployed an on-demand churn prediction system, enabling immediate churn-risk assessment at decision time.
+- Optimized decision threshold to improve recall from 80% to 90%, accepting precision trade-off (52% → 43%) to prioritize catching churners over minimizing false alarms.
+- Validated on a held-out test set with a train/test gap of ≤ 0.03, confirming the model performs consistently on customers it has never seen before.
+- Proactive churn flagging enables retention teams to reach high-risk customers with targeted offers before they cancel.
 
 <hr>
 

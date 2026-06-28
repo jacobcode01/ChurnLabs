@@ -645,7 +645,7 @@ http://localhost:5000
 ```
 - The MLflow dashboard allows you to explore experiment runs and compare model results.
 
-<img title="MLflow UI" src="https://github.com/user-attachments/assets/30a4f665-84b6-45bb-8b50-db89c96ee5b2">
+<img title="MLflow UI" src="https://github.com/user-attachments/assets/0ba7f77b-c46d-4a14-817a-87a6645e7cf1">
 
 ### Types of Experiments Performed
 - During model development, two types of experiments were performed and tracked using MLflow.
@@ -668,7 +668,7 @@ http://localhost:5000
     - PR-AUC
 - This helps identify the best-performing model based on business requirements.
 
-<img title="Model Comparison" src="https://github.com/user-attachments/assets/0a30ad8b-458a-41c3-bfc4-b766d7e2bf52">
+<img title="Model Comparison" src="https://github.com/user-attachments/assets/0740a01c-e806-426f-85ef-fbd904e6ffc5">
 
 ### 2. Threshold Optimization
 - After selecting the best-performing model, another experiment is conducted to optimize the decision threshold.
@@ -681,7 +681,7 @@ http://localhost:5000
 - Optimal threshold selection allowed the model to achieve \~90% recall for the churn class.
 - This approach allows the trade-off between the two thresholds to be compared directly in the MLflow UI.
 
-<img title="Threshold Optimization" src="https://github.com/user-attachments/assets/6753c497-6e2b-4b90-bcc3-5a1be9fdc453">
+<img title="Threshold Optimization" src="https://github.com/user-attachments/assets/cc8281f6-6d36-4f61-92a0-4b84907dfc5b">
 
 ### Logged Artifacts
 - MLflow also stores experiment artifacts generated during training.
@@ -698,6 +698,8 @@ http://localhost:5000
 > ```
 >
 > Resetting MLflow means permanently deleting all experiments, runs, metrics, and artifacts stored locally.
+
+<img title="Logged Artifacts" src="https://github.com/user-attachments/assets/245a8a8b-18a3-4c7c-aa51-c2ae25027127"> &nbsp;&nbsp; <img title="Logged Artifacts" src="https://github.com/user-attachments/assets/7da0326e-2cdb-42cd-b6b8-6c34b7a85cee">
 
 <hr>
 

@@ -717,8 +717,8 @@ http://localhost:5000
 ```python
 # Importing load_processed_data function from loaders module
 from churnlabs.data.loaders import load_processed_data
-df = load_processed_data()
-df.head()
+churn_data = load_processed_data()
+churn_data.head()
 ```
 </details>
 
@@ -765,7 +765,7 @@ y_train, y_test = target_encoder(y_train, y_test)
 cat_cols = X_train.select_dtypes(include='category').columns
 
 cat_trf = Pipeline(steps=[
-    ('ohe', OneHotEncoder(sparse_output=False, drop='first'))
+    ('ohe', OneHotEncoder(sparse_output=False, drop='first', handle_unknown='ignore'))
 ])
 ```
 ```python
@@ -805,7 +805,10 @@ pipe = Pipeline(steps=[
 <br>
 
 ```python
-# Cross-Validation
+# Stratified K-Fold
+skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+
+# Cross Validation Setup
 scoring = {
     'accuracy': 'accuracy',
     'precision': 'precision',
@@ -818,7 +821,7 @@ scoring = {
 cv = cross_validate(estimator=pipe, X=X_train, y=y_train, cv=skf, scoring=scoring, n_jobs=-1)
 ```
 ```python
-# Cross Validation Results
+# Cross Validation Result
 results = {metric.replace('test_', ''): [np.mean(scores), np.std(scores)] for metric, scores in cv.items() if metric.startswith('test')}
 results_df = pd.DataFrame(results, index=['mean', 'std']).T
 results_df
@@ -838,9 +841,9 @@ results_df
 | roc_auc | 0.5000 | 0.0 |
 | pr_auc | 0.2657	| 0.0 |
 
-### What `DummyClassifier` helps us check?
+### What does the `DummyClassifier` tell us?
 - The `DummyClassifier` gives us a baseline to compare against real models.
-- It predicts the majority class (`non-churn`) for every customer.
+- It predicts the majority class (`non-churn`) for every customer, ignoring all features.
 ```
 # Class Distribution
 churn
@@ -849,29 +852,31 @@ Yes    0.2657
 ```
 ```
 # Classification Metrics
-accuracy    0.73
-precision   0.00
-recall      0.00
-f1          0.00
-roc-auc     0.50
+accuracy    73%
+precision   0
+recall      0
+f1          0
+roc-auc     0.5
 pr-auc      0.26
 ```
-- Since the dataset contains approximately 73% non-churn customers, the model achieves 73% accuracy.
-- However, it fails to identify any churners, resulting in `0` Precision, Recall, and F1 score.
-- The ROC AUC of 0.5 confirms that the model has no predictive power and performs as random guessing.
+- Since the dataset contains ~73% non-churn customers, the model achieves 73% accuracy.
+- However, it fails to identify any churners, resulting in zero precision, recall, and F1 score.
+- A model that never identifies a churner is useless to a retention team, which is why recall and PR-AUC are the metrics that actually matter here.
+- The ROC-AUC of 0.5 confirms that the model has no predictive power and performs equivalent to random guessing.
+- A PR-AUC of 0.26 represents the theoretical floor, equal to the minority class proportion, meaning any useful model must exceed this.
 - The `DummyClassifier` makes exactly the same prediction in every fold.
 - So every fold produces identical metrics, and that's why standard deviation is equal to 0.
-- This confirms our pipeline and cross-validation setup behave as expected and no obvious leakage exists.
+- This confirms our pipeline and cross-validation setup behave as expected.
 - Now any real model must surpass this benchmark to be considered a good performer.
 ```
 # Real Model Expectations
 Achieve PR AUC > 0.26
-Achieve ROC AUC > 0.50
-Achieve Precision > 0.00
-Achieve Recall > 0.00
-Achieve F1 Score > 0.00
+Achieve ROC AUC > 0.5
+Achieve Precision > 0
+Achieve Recall > 0
+Achieve F1 Score > 0
 ```
-- If a trained model cannot significantly outperform this baseline, it is not useful.
+- If a trained model cannot outperform this baseline, it is not useful.
 </details>
 
 <hr>
@@ -895,47 +900,17 @@ models = {
 }
 ```
 ```python
-# Computing Classification Metrics through Cross-Validation
-results = {}
-
-skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
-
-scoring = {
-    'accuracy': 'accuracy',
-    'precision': 'precision',
-    'recall': 'recall',
-    'f1': 'f1',
-    'roc_auc': 'roc_auc',
-    'pr_auc': 'average_precision'
-}
-
-for name, model in models.items():
-
-    pipe = Pipeline(steps=[
-        ('preprocessor', ctf),
-        ('model', model)
-    ])
-
-    cv_results = cross_validate(estimator=pipe, X=X_train, y=y_train, cv=skf, scoring=scoring, n_jobs=-1, return_train_score=False)
-
-    results[name] = {metric: cv_results[f'test_{metric}'].mean() for metric in scoring}
-
-    recall_mean, recall_std = cv_results['test_recall'].mean(), cv_results['test_recall'].std()
-    prauc_mean, prauc_std = cv_results['test_pr_auc'].mean(), cv_results['test_pr_auc'].std()
-    rocauc_mean, rocauc_std = cv_results['test_roc_auc'].mean(), cv_results['test_roc_auc'].std()
-    f1_mean, f1_std = cv_results['test_f1'].mean(), cv_results['test_f1'].std()
-    prec_mean, prec_std = cv_results['test_precision'].mean(), cv_results['test_precision'].std()
-    acc_mean, acc_std = cv_results['test_accuracy'].mean(), cv_results['test_accuracy'].std()
-
+# Plotting Metric Comparision Graph
+for model in results_df.columns:
     print()
-    print(f'Model : {name}')
+    print(f'Model : {model}')
     print('-' * 40)
-    print(f'Recall    : {recall_mean:.2f}')
-    print(f'PR-AUC    : {prauc_mean:.2f}')
-    print(f'ROC-AUC   : {rocauc_mean:.2f}')
-    print(f'F1-Score  : {f1_mean:.2f}')
-    print(f'Precision : {prec_mean:.2f}')
-    print(f'Accuracy  : {acc_mean:.2f}')
+    print(f'Recall    : {results_df.loc["recall_mean", model]:.2f}')
+    print(f'PR-AUC    : {results_df.loc["pr_auc_mean", model]:.2f}')
+    print(f'ROC-AUC   : {results_df.loc["roc_auc_mean", model]:.2f}')
+    print(f'F1-Score  : {results_df.loc["f1_mean", model]:.2f}')
+    print(f'Precision : {results_df.loc["precision_mean", model]:.2f}')
+    print(f'Accuracy  : {results_df.loc["accuracy_mean", model]:.2f}')
 ```
 </details>
 
@@ -1008,7 +983,7 @@ Precision : 0.66
 Accuracy  : 0.80
 ```
 
-<img title="Model Comparison" src="https://github.com/user-attachments/assets/6952695b-93b5-461c-8bf5-97230941a66f" />
+<img title="Model Comparison" src="https://github.com/user-attachments/assets/dc5dcb22-c21b-4440-a5eb-9478f53a96c9">
 
 </details>
 
@@ -1068,7 +1043,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-<img title="Confusion Matrix Plot" src="https://github.com/user-attachments/assets/31c58541-5cc3-420e-883d-4796b7499c35">
+<img title="Confusion Matrix Plot" src="https://github.com/user-attachments/assets/d2d45a25-3ba1-4824-b481-3ec7bbdb03d2">
 
 </details>
 
@@ -1081,7 +1056,7 @@ plt.show()
 <br>
 
 ```python
-# Fitting Pipeline
+# Fitting the Pipeline
 pipe.fit(X_train, y_train)
 ```
 ```python
@@ -1090,7 +1065,6 @@ raw_features = pipe.named_steps['preprocessor'].get_feature_names_out()
 ```
 ```python
 # Clean Column Names (splitting based on '__' and extracting 2nd element)
-# ['numerical', 'totalcharges'] -> 'totalcharges'
 features = [feature.split('__')[1] for feature in raw_features]
 ```
 ```python
@@ -1120,7 +1094,12 @@ plt.tight_layout()
 plt.show()
 ```
 
-<img title="Feature Importance Plot" src="https://github.com/user-attachments/assets/fe447aab-ed24-4d03-9de2-4414e50bd441">
+<img title="Feature Importance Plot" src="https://github.com/user-attachments/assets/655319e5-6844-470e-8708-f95ff33795ac">
+
+### Feature Importance Interpretation
+- 🟢 Positive coefficients → Increase churn risk
+- 🔴 Negative coefficients → Decrease churn risk
+Values represent impact on log-odds of churn.
 
 </details>
 
@@ -1161,6 +1140,7 @@ if not valid.empty:
     best_threshold = best_row["threshold"]
 else:
     best_threshold = 0.5
+    print("Warning: No threshold achieved target recall of 0.90. Falling back to 0.5.")
 
 print(f"Best Threshold: {best_threshold:.4f}")
 ```
@@ -1174,10 +1154,6 @@ print(f"Best Threshold: {best_threshold:.4f}")
 <summary>Click Here to view Code Snippet</summary>
 <br>
 
-```python
-# Cross Val Predict
-y_proba_cv = cross_val_predict(estimator=pipe, X=X_train, y=y_train, cv=skf, method='predict_proba', n_jobs=-1)[:, 1]
-```
 ```python
 # Best Threshold
 y_pred_best = (y_proba_cv >= best_threshold).astype(int)
@@ -1193,13 +1169,13 @@ y_pred_best = (y_proba_cv >= best_threshold).astype(int)
 print(classification_report(y_train, y_pred_best, target_names=['No', 'Yes']))
 ```
 ```
-              precision    recall  f1-score   support
+			  precision    recall  f1-score   support
 
-          No       0.94      0.61      0.74      4130
+          No       0.95      0.61      0.74      4130
          Yes       0.45      0.90      0.60      1495
 
     accuracy                           0.69      5625
-   macro avg       0.70      0.75      0.67      5625
+   macro avg       0.70      0.76      0.67      5625
 weighted avg       0.81      0.69      0.70      5625
 ```
 ```python
@@ -1215,7 +1191,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-<img title="Confusion Matrix Plot" src="https://github.com/user-attachments/assets/75c9791d-a952-4d85-b443-497e89b82b4c">
+<img title="Confusion Matrix Plot" src="https://github.com/user-attachments/assets/7aad908a-327d-4f35-bb12-e2e856a61878">
 
 </details>
 
@@ -1249,12 +1225,12 @@ print(classification_report(y_test, y_test_pred, target_names=['No', 'Yes']))
 ```
               precision    recall  f1-score   support
 
-          No       0.93      0.59      0.72      1033
-         Yes       0.44      0.89      0.59       374
+          No       0.94      0.58      0.71      1033
+         Yes       0.43      0.90      0.58       374
 
-    accuracy                           0.67      1407
+    accuracy                           0.66      1407
    macro avg       0.69      0.74      0.65      1407
-weighted avg       0.80      0.67      0.69      1407
+weighted avg       0.80      0.66      0.68      1407
 ```
 ```python
 # Plotting Confusion Matrix
@@ -1268,7 +1244,9 @@ ax[1].grid(visible=False)
 plt.tight_layout()
 plt.show()
 ```
-<img title="Confusion Matrix Plot" src="https://github.com/user-attachments/assets/8dd991b1-8b00-4b42-bf79-1c6ad235f8a4">
+
+<img title="Confusion Matrix Plot" src="https://github.com/user-attachments/assets/b76ab081-b30a-46c5-9e68-58b31c405fd8">
+
 </details>
 
 <hr>

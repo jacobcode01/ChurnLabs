@@ -43,7 +43,7 @@
 ## Overview
 - Built an end-to-end churn prediction system on 7,000+ customer records from PostgreSQL using Scikit-learn pipelines, ensuring reproducible training and preventing data leakage.
 - Evaluated 7 classification models including a DummyClassifier baseline, selecting Logistic Regression based on Recall, PR-AUC, and F1 score, tracked in MLflow with per-fold metrics.
-- Optimized the decision threshold via precision-recall curve from 0.5 to 0.3632, targeting ≥90% recall as a deliberate business decision over accuracy.
+- Optimized the decision threshold via precision-recall curve from 0.5 to 0.3632, targeting ≥90% recall on the churn class as a deliberate business decision over accuracy.
 - Deployed a Dockerized FastAPI backend on Render with a React frontend on Netlify, pulling model artifacts directly from Hugging Face Hub for inference without depending on local storage.
 
 <hr>

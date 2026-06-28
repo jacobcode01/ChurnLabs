@@ -41,7 +41,7 @@
 <hr>
 
 ## Overview
-- Built an end-to-end churn prediction system on 7,000+ PostgreSQL customer records using Scikit-learn pipelines to prevent data leakage.
+- Built a churn prediction system on 7,000+ PostgreSQL customer records using Scikit-learn pipelines to prevent data leakage.
 - Evaluated 7 classification models including a DummyClassifier baseline across 6 metrics, tracking all experiments in MLflow.
 - Optimized the decision threshold using the precision-recall curve, targeting ≥90% recall as a deliberate business decision.
 - Deployed a Dockerized FastAPI backend on Render with a React frontend on Netlify, leveraging Hugging Face model artifacts for on-demand customer risk scoring.

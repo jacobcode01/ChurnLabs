@@ -631,7 +631,7 @@ Ubuntu (WSL)
 
 ## Experiment Tracking
 - This project uses MLflow to track machine learning experiments, compare models, and log artifacts.
-- MLflow maintains reproducibility and transparency by tracking model parameters, evaluation metrics, and artifacts in a centralized dashboard.
+- MLflow maintains reproducibility by tracking model parameters, evaluation metrics, and artifacts in a centralized dashboard.
 
 ### Start the MLflow Dashboard
 - To start the MLflow dashboard locally, run the following command from the project root directory :
@@ -673,7 +673,7 @@ http://localhost:5000
 ### 2. Threshold Optimization
 - After selecting the best-performing model, another experiment is conducted to optimize the decision threshold.
 - Instead of using the default threshold of 0.5, out-of-fold probabilities from cross-validation were used,
-- To plot the precision-recall curve and identify the threshold that achieves ≥90% recall while maximizing precision within that constraint.
+- To plot the precision-recall curve and identify the threshold that achieves ≥90% recall while maximizing precision.
 - These experiments focused on :
     - Analyzing recall across different thresholds.
     - Selecting a threshold that meets business requirements.
@@ -685,9 +685,7 @@ http://localhost:5000
 
 ### Logged Artifacts
 - MLflow also stores experiment artifacts generated during training.
-- Some of the artifacts logged in this project include confusion matrix and classification reports.
-	- Confusion matrix saved to `plots/` subfolder
- 	- Classification report saved to `reports/` subfolder
+- Artifacts logged in this project include confusion matrix and classification reports.
 - These artifacts help analyze model behavior and support model selection.
 
 > [!NOTE]

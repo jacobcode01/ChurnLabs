@@ -514,8 +514,6 @@ uv sync
     - Launching MLflow Dashboard
 - Instead of manually running multiple commands, `Make` executes them automatically.
 
-<img title="Makefile" src="https://github.com/user-attachments/assets/98e013c1-0285-4b95-b84c-5990d84fd072">
-
 ### Why use a Makefile?
 - Using a Makefile improves the development workflow by simplifying command execution.
 - Instead of running long commands like :
@@ -674,6 +672,7 @@ http://localhost:5000
     - Accuracy
     - Precision
     - Recall
+    - F1-Score
     - ROC-AUC
     - PR-AUC
 - This helps identify the best-performing model based on business requirements.
@@ -806,22 +805,25 @@ ctf = ColumnTransformer(transformers=[
 ```python
 # Importing DummyClassifier Model
 dummy = DummyClassifier(strategy='most_frequent', random_state=42)
-
+```
+```python
 # Pipeline
 pipe = Pipeline(steps=[
     ('preprocessor', ctf),
     ('model', dummy)
 ])
-
+```
+```python
 # Stratified K-Fold
 skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
-
+```
+```python
 # Cross-Validation Setup
 scoring = {
     'accuracy': 'accuracy',
     'precision': 'precision',
     'recall': 'recall',
-    'f1': 'f1',
+    'f1_score': 'f1',
     'roc_auc': 'roc_auc',
     'pr_auc': 'average_precision'
 }
@@ -845,7 +847,7 @@ results_df
 | accuracy | 0.7342 | 0.0 |
 | precision	| 0.0000 | 0.0 |
 | recall | 0.0000	| 0.0 |
-| f1 | 0.0000 | 0.0 |
+| f1_score | 0.0000 | 0.0 |
 | roc_auc | 0.5000 | 0.0 |
 | pr_auc | 0.2657	| 0.0 |
 
@@ -863,12 +865,12 @@ Yes    0.2657
 accuracy    73%
 precision   0
 recall      0
-f1          0
-roc-auc     0.5
-pr-auc      0.26
+f1_score    0
+roc_auc     0.5
+pr_auc      0.26
 ```
 - Since the dataset contains ~73% non-churn customers, the model achieves 73% accuracy.
-- However, it fails to identify any churners, resulting in zero precision, recall, and F1 score.
+- However, it fails to identify any churners, resulting in zero precision, recall, and F1-Score.
 - A model that never identifies a churner is useless to a retention team, which is why recall and PR-AUC are the metrics that actually matter here.
 - The ROC-AUC of 0.5 confirms that the model has no predictive power and performs equivalent to random guessing.
 - A PR-AUC of 0.26 represents the theoretical floor, equal to the minority class proportion, meaning any useful model must exceed this.
@@ -878,18 +880,18 @@ pr-auc      0.26
 - Now any real model must surpass this benchmark to be considered a good performer.
 ```
 # Real Model Expectations
-Achieve PR AUC > 0.26
-Achieve ROC AUC > 0.5
+Achieve PR-AUC > 0.26
+Achieve ROC-AUC > 0.5
 Achieve Precision > 0
 Achieve Recall > 0
-Achieve F1 Score > 0
+Achieve F1-Score > 0
 ```
 - If a trained model cannot outperform this baseline, it is not useful.
 </details>
 
 <hr>
 
-### 6. Multiple Model Comparison
+### 6. Multi-Model Comparison
 
 <details>
 <summary>Click Here to view Code Snippet</summary>
@@ -916,7 +918,7 @@ for model in results_df.columns:
     print(f'Recall    : {results_df.loc["recall_mean", model]:.2f}')
     print(f'PR-AUC    : {results_df.loc["pr_auc_mean", model]:.2f}')
     print(f'ROC-AUC   : {results_df.loc["roc_auc_mean", model]:.2f}')
-    print(f'F1-Score  : {results_df.loc["f1_mean", model]:.2f}')
+    print(f'F1-Score  : {results_df.loc["f1_score_mean", model]:.2f}')
     print(f'Precision : {results_df.loc["precision_mean", model]:.2f}')
     print(f'Accuracy  : {results_df.loc["accuracy_mean", model]:.2f}')
 ```
@@ -997,7 +999,7 @@ Accuracy  : 0.80
 
 <hr>
 
-### 7. Performance Evaluation of `LogisticRegression` using Cross-Validation
+### 7. Selecting `LogisticRegression` as Final Model
 
 <details>
 <summary>Click Here to view Code Snippet</summary>
@@ -1113,7 +1115,7 @@ Values represent impact on log-odds of churn.
 
 <hr>
 
-### 9. Decision Threshold Optimization
+### 9. Decision Threshold Tuning
 
 <details>
 <summary>Click Here to view Code Snippet</summary>
@@ -1139,7 +1141,8 @@ pr_results
 ```python
 # Define a Recall Target (Business Decision)
 recall_target = 0.90
-
+```
+```python
 # Evaluate Recall across Thresholds and Choose Best Threshold
 valid = pr_results[pr_results["recall"] >= recall_target]
 
@@ -1165,7 +1168,7 @@ Best Threshold: 0.3632
 
 <hr>
 
-### 10. Performance Evaluation using Cross-Validation with Tuned Threshold
+### 10. Performance Evaluation with Tuned Threshold
 
 <details>
 <summary>Click Here to view Code Snippet</summary>

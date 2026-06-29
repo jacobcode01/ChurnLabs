@@ -872,7 +872,7 @@ pr_auc      0.26
 - Since the dataset contains ~73% non-churn customers, the model achieves 73% accuracy.
 - However, it fails to identify any churners, resulting in zero precision, recall, and F1-Score.
 - A model that never identifies a churner is useless, making recall and PR-AUC the only metrics that matter.
-- ROC-AUC of 0.5 and PR-AUC of 0.26 confirm no predictive power, both performing equivalent to random guessing.
+- ROC-AUC of 0.5 and PR-AUC of 0.26 confirm no predictive power, performing equivalent to random guessing.
 - The `DummyClassifier` makes exactly the same prediction in every fold.
 - So every fold produces identical metrics, and that's why standard deviation is equal to 0.
 - This confirms our pipeline and cross-validation setup behave as expected.

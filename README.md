@@ -110,7 +110,7 @@ make frontend-dev    # Start React frontend → http://localhost:5173
 ## Impact
 - Achieved ~90% recall on the held-out test set, correctly flagging 335 out of 374 churners and missing only 39.
 - Accepted a precision drop from 52% to 43% as the cost of a false retention offer is lower than losing a churner.
-- Deployed a Dockerized frontend on Netlify and backend on Render, with model loaded on-demand from Hugging Face Hub.
+- Deployed a Dockerized backend on Render and React frontend on Netlify, loading the model from Hugging Face Hub.
 
 <hr>
 

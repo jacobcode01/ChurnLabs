@@ -110,7 +110,7 @@ make frontend-dev    # Start React frontend → http://localhost:5173
 ## Impact
 - Achieved ~90% recall on the held-out test set, correctly flagging 335 out of 374 churners and missing only 39.
 - Accepted a precision drop from 52% to 43% as the cost of a false retention offer is lower than losing a churner.
-- Deployed a live end-to-end system accessible via a React frontend and Swagger UI, with the model loaded on-demand from Hugging Face Hub.
+- Deployed a live system accessible via a React frontend, with the model loaded on-demand from Hugging Face Hub.
 
 <hr>
 

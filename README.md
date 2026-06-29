@@ -708,10 +708,7 @@ http://localhost:5000
 >
 > Resetting MLflow means permanently deleting all experiments, runs, metrics, and artifacts stored locally.
 
-<div align="center">
-	<img title="Logged Artifacts" width="49%" src="https://github.com/user-attachments/assets/245a8a8b-18a3-4c7c-aa51-c2ae25027127">
-	<img title="Logged Artifacts" width="49%" src="https://github.com/user-attachments/assets/7da0326e-2cdb-42cd-b6b8-6c34b7a85cee">
-</div>
+<img title="Logged Artifacts" src="https://github.com/user-attachments/assets/245a8a8b-18a3-4c7c-aa51-c2ae25027127">
 
 <hr>
 

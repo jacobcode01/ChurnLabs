@@ -108,9 +108,8 @@ make frontend-dev    # Start React frontend → http://localhost:5173
 <hr>
 
 ## Impact
-- Achieved ~90% recall on the held-out test set, correctly flagging 335 out of 374 churners while missing only 39, with no significant overfitting between train and test.
+- Achieved ~90% recall on the held-out test set, correctly flagging 335 out of 374 churners while missing only 39, with no significant overfitting between train and test set.
 - Accepted a deliberate precision drop from 52% to 43% by tuning the decision threshold from 0.5 to 0.3632, as the cost of a false retention offer is lower than losing a churner.
-- Deployed a Dockerized FastAPI backend on Render connected to a React frontend, pulling the trained model from Hugging Face Hub as a remote artifact store for on-demand risk scoring.
 
 <hr>
 

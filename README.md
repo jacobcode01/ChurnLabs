@@ -718,7 +718,7 @@ http://localhost:5000
 
 ## Model Training & Evaluation
 
-### 1. Load the Data
+### 1. Loading the Data
 
 <details>
 <summary>Click Here to view Code Snippet</summary>
@@ -734,7 +734,7 @@ churn_data.head()
 
 <hr>
 
-### 2. Split the Data
+### 2. Splitting the Data
 
 <details>
 <summary>Click Here to view Code Snippet</summary>
@@ -749,7 +749,7 @@ X_train, X_test, y_train, y_test = split_data(df)
 
 <hr>
 
-### 3. Encode Target Variable
+### 3. Encoding Target Variable
 
 <details>
 <summary>Click Here to view Code Snippet</summary>
@@ -764,7 +764,7 @@ y_train, y_test = target_encoder(y_train, y_test)
 
 <hr>
 
-### 4. Build Preprocessing Pipeline
+### 4. Building Preprocessing Pipeline
 
 <details>
 <summary>Click Here to view Code Snippet</summary>
@@ -787,38 +787,36 @@ num_trf = Pipeline(steps=[
 ])
 ```
 ```python
-# Column Transformation
+# Combining Everything into ColumnTransformer
 ctf = ColumnTransformer(transformers=[
     ('categorical', cat_trf, cat_cols),
     ('numerical', num_trf, num_cols)
 ], remainder='passthrough', n_jobs=-1)
 ```
-```python
-# Importing DummyClassifier Model
-dummy = DummyClassifier(strategy='most_frequent', random_state=42)
-```
-```python
-# Pipeline
-pipe = Pipeline(steps=[
-    ('preprocessor', ctf),
-    ('model', dummy)
-])
-```
 </details>
 
 <hr>
 
-### 5. Train Baseline Model
+### 5. Training a Baseline Model
 
 <details>
 <summary>Click Here to view Code Snippet</summary>
 <br>
 
 ```python
+# Importing DummyClassifier Model
+dummy = DummyClassifier(strategy='most_frequent', random_state=42)
+
+# Pipeline
+pipe = Pipeline(steps=[
+    ('preprocessor', ctf),
+    ('model', dummy)
+])
+
 # Stratified K-Fold
 skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
 
-# Cross Validation Setup
+# Cross-Validation Setup
 scoring = {
     'accuracy': 'accuracy',
     'precision': 'precision',
@@ -831,7 +829,7 @@ scoring = {
 cv = cross_validate(estimator=pipe, X=X_train, y=y_train, cv=skf, scoring=scoring, n_jobs=-1)
 ```
 ```python
-# Cross Validation Result
+# Cross-Validation Result
 results = {metric.replace('test_', ''): [np.mean(scores), np.std(scores)] for metric, scores in cv.items() if metric.startswith('test')}
 results_df = pd.DataFrame(results, index=['mean', 'std']).T
 results_df
@@ -891,7 +889,7 @@ Achieve F1 Score > 0
 
 <hr>
 
-### 6. Evaluate Multiple Models
+### 6. Multiple Model Comparison
 
 <details>
 <summary>Click Here to view Code Snippet</summary>
@@ -999,25 +997,25 @@ Accuracy  : 0.80
 
 <hr>
 
-### 7. Select `LogisticRegression` as Final Model
+### 7. Performance Evaluation of `LogisticRegression` using Cross-Validation
 
 <details>
 <summary>Click Here to view Code Snippet</summary>
 <br>
 
 ```python
-# Creating Logistic Regression Model Object
+# Creating LogisticRegression Model Object
 lr = LogisticRegression(class_weight='balanced', max_iter=1000, random_state=42)
 ```
 ```python
-# Final Pipeline with Logistic Regression
+# Final Pipeline with LogisticRegression
 pipe = Pipeline(steps=[
         ('preprocessor', ctf),
         ('model', lr)
     ])
 ```
 ```python
-# Cross Val Predict
+# Cross-Validation Predict
 y_pred_cv = cross_val_predict(estimator=pipe, X=X_train, y=y_train, cv=skf, method='predict', n_jobs=-1)
 ```
 </details>
@@ -1078,7 +1076,7 @@ raw_features = pipe.named_steps['preprocessor'].get_feature_names_out()
 features = [feature.split('__')[1] for feature in raw_features]
 ```
 ```python
-# Coefficients from Logistic Regression
+# Coefficients from LogisticRegression
 coefficients = pipe.named_steps['model'].coef_[0]
 ```
 ```python
@@ -1122,7 +1120,7 @@ Values represent impact on log-odds of churn.
 <br>
 
 ```python
-# Cross Val Predict
+# Cross-Validation Predict
 y_proba_cv = cross_val_predict(estimator=pipe, X=X_train, y=y_train, cv=skf, method='predict_proba', n_jobs=-1)[:, 1]
 ```
 ```python
@@ -1167,7 +1165,7 @@ Best Threshold: 0.3632
 
 <hr>
 
-### 10. Performance Evaluation with Tuned Threshold
+### 10. Performance Evaluation using Cross-Validation with Tuned Threshold
 
 <details>
 <summary>Click Here to view Code Snippet</summary>
@@ -1216,7 +1214,7 @@ plt.show()
 
 <hr>
 
-### 11. Final Evaluation on Test Set
+### 11. Final Model Evaluation on Test Set
 
 <details>
 <summary>Click Here to view Code Snippet</summary>
@@ -1227,19 +1225,65 @@ plt.show()
 pipe.fit(X_train, y_train)
 ```
 ```python
-# Evaluate Final Model once on the Test Set
+# Test Set Probability used for both Default and Tuned Threshold
 y_test_proba = pipe.predict_proba(X_test)[:, 1]
-y_test_pred = (y_test_proba >= best_threshold).astype(int)
 ```
 </details>
+
+### Default Threshold
 
 <details>
 <summary>Click Here to view Analysis</summary>
 <br>
 
 ```python
-# Classification Report
-print(classification_report(y_test, y_test_pred, target_names=['No', 'Yes']))
+# Default Threshold
+y_test_pred_default = (y_test_proba >= 0.5).astype(int)
+```
+```python
+# Classification Report on Default Threshold
+print(classification_report(y_test, y_test_pred_default, target_names=['No', 'Yes']))
+```
+```
+              precision    recall  f1-score   support
+
+          No       0.90      0.70      0.79      1033
+         Yes       0.49      0.80      0.61       374
+
+    accuracy                           0.73      1407
+   macro avg       0.70      0.75      0.70      1407
+weighted avg       0.79      0.73      0.74      1407
+```
+```python
+# Plotting Confusion Matrix on Default Threshold
+fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(12,4))
+ConfusionMatrixDisplay.from_predictions(y_test, y_test_pred_default, display_labels=['No', 'Yes'], cmap='crest', ax=ax[0])
+ConfusionMatrixDisplay.from_predictions(y_test, y_test_pred_default, display_labels=['No', 'Yes'], cmap='crest', normalize='all', ax=ax[1])
+ax[0].set_title('Confusion Matrix at Default Threshold (Counts)')
+ax[1].set_title('Confusion Matrix at Default Threshold (Normalized)')
+ax[0].grid(visible=False)
+ax[1].grid(visible=False)
+plt.tight_layout()
+plt.show()
+```
+
+<img title="Confusion Matrix Plot on Default Threshold" src="https://github.com/user-attachments/assets/cae5a413-d0e9-455c-aa10-b9731c21e90a">
+
+</details>
+
+### Tuned Threshold
+
+<details>
+<summary>Click Here to view Analysis</summary>
+<br>
+
+```python
+# Tuned Threshold
+y_test_pred_tuned = (y_test_proba >= best_threshold).astype(int)
+```
+```python
+# Classification Report on Tuned Threshold
+print(classification_report(y_test, y_test_pred_tuned, target_names=['No', 'Yes']))
 ```
 ```
               precision    recall  f1-score   support
@@ -1252,19 +1296,19 @@ print(classification_report(y_test, y_test_pred, target_names=['No', 'Yes']))
 weighted avg       0.80      0.66      0.68      1407
 ```
 ```python
-# Plotting Confusion Matrix
+# Plotting Confusion Matrix on Tuned Threshold
 fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(12,4))
-ConfusionMatrixDisplay.from_predictions(y_test, y_test_pred, display_labels=['No', 'Yes'], cmap='crest', ax=ax[0])
-ConfusionMatrixDisplay.from_predictions(y_test, y_test_pred, display_labels=['No', 'Yes'], cmap='crest', normalize='all', ax=ax[1])
-ax[0].set_title('Confusion Matrix (Counts)')
-ax[1].set_title('Confusion Matrix (Normalized)')
+ConfusionMatrixDisplay.from_predictions(y_test, y_test_pred_tuned, display_labels=['No', 'Yes'], cmap='crest', ax=ax[0])
+ConfusionMatrixDisplay.from_predictions(y_test, y_test_pred_tuned, display_labels=['No', 'Yes'], cmap='crest', normalize='all', ax=ax[1])
+ax[0].set_title('Confusion Matrix at Tuned Threshold (Counts)')
+ax[1].set_title('Confusion Matrix at Tuned Threshold (Normalized)')
 ax[0].grid(visible=False)
 ax[1].grid(visible=False)
 plt.tight_layout()
 plt.show()
 ```
 
-<img title="Confusion Matrix Plot" src="https://github.com/user-attachments/assets/b76ab081-b30a-46c5-9e68-58b31c405fd8">
+<img title="Confusion Matrix Plot on Tuned Threshold" src="https://github.com/user-attachments/assets/730a3b6c-fa0b-4971-a48c-abe82e362c6f">
 
 </details>
 

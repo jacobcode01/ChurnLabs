@@ -424,7 +424,7 @@ config/
 └── artifacts-config.yaml
 ```
 
-<img title="Config Files" src="https://github.com/user-attachments/assets/f7b07aca-ac4d-4f22-b7aa-a822d8f674e3">
+<img title="Config Files" src="https://github.com/user-attachments/assets/745c635f-2f0f-473f-ae63-a9be08fe4fd0">
 
 ### Why Config-Driven design?
 

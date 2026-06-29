@@ -471,7 +471,7 @@ threshold:
 	- Command Execution
 - into a single tool.
 
-<img title="uv by Astral" src="https://github.com/user-attachments/assets/0f061d2f-78d2-4bcc-9a48-70cf5700fc68">
+<img title="uv by Astral" src="https://github.com/user-attachments/assets/8427afdd-6642-49bb-bcb3-ae1b9b22be4e">
 
 ### Why use `uv` over `pip`?
 

@@ -639,7 +639,7 @@ Ubuntu (WSL)
 
 ## Experiment Tracking
 - This project uses MLflow to track machine learning experiments, compare models, and log artifacts.
-- MLflow maintains reproducibility by tracking model parameters, evaluation metrics, and artifacts in a centralized dashboard.
+- MLflow ensures reproducibility by tracking parameters, metrics, and artifacts in a centralized dashboard.
 
 ### Start the MLflow Dashboard
 - To start the MLflow dashboard locally, run the following command from the project root directory :

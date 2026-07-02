@@ -603,6 +603,46 @@ Built for x86_64-pc-linux-gnu
 
 </details>
 
+### Install `uv` in WSL
+
+<details>
+<summary>Click Here for More Details</summary>
+<br>
+
+- All Makefile commands are driven by `uv` under the hood.
+- This means `uv` must be installed inside WSL first after WSL and `Make` are set up
+
+### Step 1 : Open Your WSL (Ubuntu) Terminal
+- Open the Start Menu
+- Search for Ubuntu
+- Launch the App
+
+### Step 2 : Install `uv`
+- Run the following command inside the WSL terminal :
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+- This downloads and installs `uv` to `~/.local/bin`.
+
+### Step 3 : Update Your Shell PATH
+- If `uv` isn't recognized after installation, reload your shell config :
+```bash
+source ~/.bashrc
+```
+- Or open a new WSL terminal window.
+
+### Step 4 : Verify `uv` Installation
+- Check that `uv` was installed correctly :
+```bash
+uv --version
+```
+- You should see output similar to : `uv 0.x.x`
+- Once `uv` is installed and verified, all `make` commands will work as expected.
+
+</details>
+
+<hr>
+
 ### Use `Make` in VS Code via WSL
 
 <details>

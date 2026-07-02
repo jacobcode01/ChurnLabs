@@ -641,8 +641,6 @@ uv --version
 
 </details>
 
-<hr>
-
 ### Use `Make` in VS Code via WSL
 
 <details>

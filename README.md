@@ -14,7 +14,7 @@
 
 </div>
 
-<a href="https://churnlabs.netlify.app"><img title="ChurnLabs" src="https://github.com/user-attachments/assets/b80b69ff-15c1-42bd-98c8-3093e67de509"></a>
+<a href="https://churnlabs.vercel.app"><img title="ChurnLabs" src="https://github.com/user-attachments/assets/b80b69ff-15c1-42bd-98c8-3093e67de509"></a>
 
 ## Table of Contents
 - [Problem](#problem)
@@ -91,7 +91,7 @@ cd ChurnLabs
 
 make install-dev     # Install dependencies and setup virtual environment
 ```
-Then download the dataset from [Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn) and place it at :
+Then download the dataset from Kaggle by clicking the link [here](https://www.kaggle.com/datasets/blastchar/telco-customer-churn) and place it at :
 ```
 data/raw/customer-churn-raw.csv
 ```
@@ -272,6 +272,7 @@ http://localhost:8000/docs
 > ENV=your_env_name
 > PORT=your_api_port
 > ALLOWED_ORIGINS=your_allowed_origins
+> HF_TOKEN=your_hugging_face_access_token
 > ```
 >
 > `ALLOWED_ORIGINS` is used to configure CORS so that the deployed React frontend can communicate with the API.
@@ -303,28 +304,10 @@ http://localhost:5173
 ```
 - The frontend communicates with the FastAPI backend to send requests and display predictions.
 
-> [!IMPORTANT]
-> The project includes a `netlify.toml` file for seamless frontend deployment on Netlify.
->
-> ```toml
-> [build]
->   base = "frontend"
->   command = "npm run build"
->   publish = "dist"
-> ```
->
-> This configuration tells Netlify to :
->
-> - Build the application inside the `frontend` directory.
-> - Execute the `npm run build` command.
-> - Deploy the output from the `dist` folder.
->
-> Learn more about Netlify Configuration [here](https://docs.netlify.com/configure-builds/file-based-configuration/).
-
 > [!NOTE]
-> When deploying the frontend on Netlify, make sure to configure the secrets in the Netlify dashboard.
+> When deploying the frontend on Vercel, make sure to configure the secrets in the Vercel dashboard.
 >
-> Navigate to : **Netlify Dashboard → Site Settings → Environment Variables**
+> Navigate to : **Vercel Dashboard → Open Project → Environment Variables**
 >
 > ```
 > VITE_API_URL=your_base_api_url
@@ -334,9 +317,9 @@ http://localhost:5173
 >
 > Without this variable, the frontend will still attempt to connect to the local API (`localhost:8000`).
 
-Access the live application [here](https://churnlabs.netlify.app) or Click on the Image below.
+Access the live application [here](https://churnlabs.vercel.app) or Click on the Image below.
 
-<a href="https://churnlabs.netlify.app"><img title="React Frontend" src="https://github.com/user-attachments/assets/f5760807-0c32-4d2f-bcf8-e94423ec3e80"></a>
+<a href="https://churnlabs.vercel.app"><img title="React Frontend" src="https://github.com/user-attachments/assets/f5760807-0c32-4d2f-bcf8-e94423ec3e80"></a>
 
 <hr>
 
@@ -1474,7 +1457,6 @@ ChurnLabs/
 ├── README.md                     # Project documentation
 ├── docker-compose.yaml           # Docker orchestration for backend and frontend
 ├── mlflow.db                     # MLflow experiment tracking database (ignored by Git)
-├── netlify.toml                  # Netlify deployment configuration
 ├── pyproject.toml                # Python project configuration
 └── uv.lock                       # Dependency lock file
 ```

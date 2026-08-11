@@ -2,15 +2,15 @@
 
 <div align="center">
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-00C7B7?style=flat&logo=netlify&logoColor=white)](https://churnlabs.netlify.app)
-[![API Docs](https://img.shields.io/badge/API-Docs-019486?style=flat&logo=fastapi&logoColor=white)](https://churnlabs.onrender.com/docs)
-[![Docker Hub](https://img.shields.io/badge/Docker%20Hub-Image-2496ED?style=flat&logo=docker&logoColor=white)](https://hub.docker.com/u/themrityunjaypathak)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-F1C99D?style=flat&logo=vercel&logoColor=white)](https://churnlabs.vercel.app)
+[![API Docs](https://img.shields.io/badge/API-Docs-05998B?style=flat&logo=fastapi&logoColor=white)](https://churnlabs.onrender.com/docs)
+[![Docker Hub](https://img.shields.io/badge/Docker%20Hub-Image-1D63ED?style=flat&logo=docker&logoColor=white)](https://hub.docker.com/u/themrityunjaypathak)
 [![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
-[![Scikit-Learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![Scikit-Learn](https://img.shields.io/badge/scikit--learn-F89939?style=flat&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/stable/)
 [![MLflow](https://img.shields.io/badge/MLflow-0194E2?style=flat&logo=mlflow&logoColor=white)](https://mlflow.org/)
 [![uv](https://img.shields.io/badge/uv-Astral-D7FF64?style=flat)](https://docs.astral.sh/uv/)
 [![React](https://img.shields.io/badge/React-333A45?style=flat&logo=react&logoColor=61DAFB)](https://react.dev/)
-[![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)](https://git-scm.com/)
+[![Git](https://img.shields.io/badge/Git-F05133?style=flat&logo=git&logoColor=white)](https://git-scm.com/)
 
 </div>
 

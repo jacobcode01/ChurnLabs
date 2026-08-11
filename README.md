@@ -17,11 +17,11 @@
 <a href="https://churnlabs.netlify.app"><img title="ChurnLabs" src="https://github.com/user-attachments/assets/b80b69ff-15c1-42bd-98c8-3093e67de509"></a>
 
 ## Table of Contents
-- [Problem Statement](#problem-statement)
-- [Overview](#overview)
-- [Quick Start](#quick-start)
+- [Problem](#problem)
+- [Solution](#solution)
 - [Workflow](#workflow)
 - [Impact](#impact)
+- [Quick Start](#quick-start)
 - [Setup](#setup)
 - [Config-Driven Design](#config-driven-design)
 - [Dependency Management](#dependency-management)
@@ -33,18 +33,36 @@
 
 <hr>
 
-## Problem Statement
+## Problem
 - Telecom companies lose customers every month without knowing who is about to leave until it's too late.
 - Identifying churners early allows businesses to intervene with the right offer before the customer cancels.
 - This project predicts which customers are likely to churn, so retention teams can act early instead of reacting late.
 
 <hr>
 
-## Overview
+## Solution
 - Built an end-to-end churn prediction system on 7,000+ customer records from PostgreSQL using Scikit-learn pipelines, ensuring reproducible training and preventing data leakage.
 - Evaluated 7 classification models including a DummyClassifier baseline, selecting Logistic Regression based on recall and PR-AUC given class imbalance, with per-fold metrics tracked in MLflow.
 - Optimized the decision threshold via precision-recall curve, targeting ≥90% recall on the churn class while accepting a precision drop as missing a churner outweighs a false retention offer.
 - Deployed a Dockerized FastAPI backend on Render with a React frontend on Netlify, pulling the trained model from Hugging Face Hub as a remote artifact store for on-demand risk scoring.
+
+<hr>
+
+## Workflow
+
+<details>
+<summary>Click Here to view Workflow Diagram</summary>
+<br>
+
+<img title="Workflow Diagram" src="https://github.com/user-attachments/assets/64f2bdf8-cd8a-42fa-88a1-23297ac5a613">
+
+</details>
+
+<hr>
+
+## Impact
+- Achieved 90% recall on the held-out test set, correctly flagging 335 out of 374 churners while missing only 39, with no overfitting between train and test set.
+- Accepted a deliberate precision drop from 49% to 43% by tuning the decision threshold from 0.5 to 0.3632, as the cost of a false retention offer is lower than losing a churner.
 
 <hr>
 
@@ -98,18 +116,6 @@ make frontend-dev    # Start React frontend → http://localhost:5173
 > - React Frontend : `http://localhost:3000`
 > 
 > - FastAPI Backend : `http://localhost:8000`
-
-<hr>
-
-## Workflow
-
-<img title="Workflow Diagram" src="https://github.com/user-attachments/assets/080a25b1-2929-409b-bdba-15302b03c4b7">
-
-<hr>
-
-## Impact
-- Achieved 90% recall on the held-out test set, correctly flagging 335 out of 374 churners while missing only 39, with no overfitting between train and test set.
-- Accepted a deliberate precision drop from 49% to 43% by tuning the decision threshold from 0.5 to 0.3632, as the cost of a false retention offer is lower than losing a churner.
 
 <hr>
 

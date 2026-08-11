@@ -289,7 +289,7 @@ http://localhost:8000/docs
 
 Access the live API documentation [here](https://churnlabs.onrender.com/docs) or Click on the Image below.
 
-<a href="https://churnlabs.onrender.com/docs"><img title="Swagger UI" src="https://github.com/user-attachments/assets/0ce583ab-55a3-421d-9504-43e3bd15831f"></a>
+<a href="https://churnlabs.onrender.com/docs"><img title="Swagger UI" src="https://github.com/user-attachments/assets/3271b52b-aaf8-42d0-9507-be1f99efaab8"></a>
 
 <hr>
 
@@ -319,7 +319,7 @@ http://localhost:5173
 
 Access the live application [here](https://churnlabs.vercel.app) or Click on the Image below.
 
-<a href="https://churnlabs.vercel.app"><img title="React Frontend" src="https://github.com/user-attachments/assets/f5760807-0c32-4d2f-bcf8-e94423ec3e80"></a>
+<a href="https://churnlabs.vercel.app"><img title="React Frontend" src="https://github.com/user-attachments/assets/1a036e23-1aa3-4f0a-bc4c-b7f17d2f98dc"></a>
 
 <hr>
 
@@ -680,7 +680,7 @@ http://localhost:5000
 ```
 - The MLflow dashboard allows you to explore experiment runs and compare model results.
 
-<img title="MLflow UI" src="https://github.com/user-attachments/assets/0ba7f77b-c46d-4a14-817a-87a6645e7cf1">
+<img title="MLflow UI" src="https://github.com/user-attachments/assets/043bae98-2167-4e96-8caa-624099e6b552">
 
 ### Types of Experiments Performed
 - During model development, two types of experiments were performed and tracked using MLflow.
@@ -704,7 +704,7 @@ http://localhost:5000
     - PR-AUC
 - This helps identify the best-performing model based on business requirements.
 
-<img title="Model Comparison" src="https://github.com/user-attachments/assets/0740a01c-e806-426f-85ef-fbd904e6ffc5">
+<img title="Model Comparison" src="https://github.com/user-attachments/assets/4d3435b0-9e96-4efd-9127-dabfbf85da3a">
 
 ### 2. Threshold Optimization
 - After selecting the best-performing model, another experiment is conducted to optimize the decision threshold.
@@ -717,7 +717,7 @@ http://localhost:5000
 - Optimal threshold selection allowed the model to achieve \~90% recall for the churn class.
 - This approach allows the trade-off between the two thresholds to be compared directly in the MLflow UI.
 
-<img title="Threshold Optimization" src="https://github.com/user-attachments/assets/cc8281f6-6d36-4f61-92a0-4b84907dfc5b">
+<img title="Threshold Optimization" src="https://github.com/user-attachments/assets/00606cd6-554a-471a-bf3c-a546c3e65b90">
 
 ### Logged Artifacts
 - MLflow also stores experiment artifacts generated during training.
@@ -735,7 +735,7 @@ http://localhost:5000
 >
 > Resetting MLflow means permanently deleting all experiments, runs, metrics, and artifacts stored locally.
 
-<img title="Logged Artifacts" src="https://github.com/user-attachments/assets/245a8a8b-18a3-4c7c-aa51-c2ae25027127">
+<img title="Logged Artifacts" src="https://github.com/user-attachments/assets/3873f9bf-5710-4a8a-8b40-9b87e341bb03">
 
 <hr>
 

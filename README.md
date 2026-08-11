@@ -14,7 +14,7 @@
 
 </div>
 
-<a href="https://churnlabs.netlify.app"><img title="ChurnLabs" src="https://github.com/user-attachments/assets/88d4eeb6-3367-4e87-8932-a6a3624225d2"></a>
+<a href="https://churnlabs.netlify.app"><img title="ChurnLabs" src="https://github.com/user-attachments/assets/9d1fe922-22bb-48e5-8c32-1d49ae12f149"></a>
 
 ## Table of Contents
 - [Problem Statement](#problem-statement)

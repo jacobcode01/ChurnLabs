@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-F1C99D?style=flat&logo=vercel&logoColor=white)](https://churnlabs.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-D6AE85?style=flat&logo=vercel&logoColor=white)](https://churnlabs.vercel.app)
 [![API Docs](https://img.shields.io/badge/API-Docs-05998B?style=flat&logo=fastapi&logoColor=white)](https://churnlabs.onrender.com/docs)
 [![Docker Hub](https://img.shields.io/badge/Docker%20Hub-Image-1D63ED?style=flat&logo=docker&logoColor=white)](https://hub.docker.com/u/themrityunjaypathak)
 [![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)

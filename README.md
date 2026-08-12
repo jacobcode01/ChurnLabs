@@ -721,6 +721,17 @@ http://localhost:5000
 
 <img title="Threshold Optimization" src="https://github.com/user-attachments/assets/00606cd6-554a-471a-bf3c-a546c3e65b90">
 
+### 3. Production Model
+- After threshold optimization, the final production model is logged as a separate MLflow experiment.
+- This experiment captures the `GradientBoostingClassifier` with the tuned decision threshold ready for deployment.
+- Logged parameters include :
+    - Model Type and Hyperparameters
+    - Decision Threshold Value
+    - Training Metadata (timestamp, dataset info, metrics info)
+- This logged model is the version deployed to generate predictions via the `/predict` endpoint.
+
+<img title="Production Model" src="https://github.com/user-attachments/assets/19fdb684-5384-4efb-bc39-7e25b1b2d700">
+
 ### Logged Artifacts
 - MLflow also stores experiment artifacts generated during training.
 - Artifacts logged in this project include confusion matrix and classification reports.

@@ -341,7 +341,7 @@ http://localhost:3000
 http://localhost:8000
 ```
 
-<img title="Docker Compose" src="https://github.com/user-attachments/assets/068c312b-a626-479c-9c87-f2776fc64e5e">
+<img title="Docker Compose" src="https://github.com/user-attachments/assets/344c219f-01a8-494b-a7b2-4267b0b91877">
 
 <hr>
 

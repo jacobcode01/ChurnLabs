@@ -685,7 +685,7 @@ http://localhost:5000
 <img title="MLflow UI" src="https://github.com/user-attachments/assets/043bae98-2167-4e96-8caa-624099e6b552">
 
 ### Types of Experiments Performed
-- During model development, two types of experiments were performed and tracked using MLflow.
+- During model development, three types of experiments were performed and tracked using MLflow.
 
 ### 1. Model Comparison
 - MLflow makes it easy to compare multiple models trained during experimentation.

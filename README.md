@@ -386,11 +386,11 @@ themrityunjaypathak/churnlabs-frontend:v1
 > 
 > View the Backend Docker Image [here](https://hub.docker.com/r/themrityunjaypathak/churnlabs-api) or Click on the Image below.
 >
-> <a href="https://hub.docker.com/r/themrityunjaypathak/churnlabs-api"><img title="Backend Docker Image" src="https://github.com/user-attachments/assets/bda95280-5eb1-4f66-a969-b5fe42932e71"></a>
+> <a href="https://hub.docker.com/r/themrityunjaypathak/churnlabs-api"><img title="Backend Docker Image" src="https://github.com/user-attachments/assets/123e3408-f020-4dad-be55-18e96bcbe522"></a>
 >
 > View the Frontend Docker Image [here](https://hub.docker.com/r/themrityunjaypathak/churnlabs-frontend) or Click on the Image below.
 >
-> <a href="https://hub.docker.com/r/themrityunjaypathak/churnlabs-frontend"><img title="Frontend Docker Image" src="https://github.com/user-attachments/assets/64cbbe66-e97f-4cb4-a245-cb4a67959f17"></a>
+> <a href="https://hub.docker.com/r/themrityunjaypathak/churnlabs-frontend"><img title="Frontend Docker Image" src="https://github.com/user-attachments/assets/5c95839c-4ccb-4e42-84bf-8afe31089482"></a>
 
 <hr>
 

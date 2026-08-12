@@ -690,20 +690,21 @@ http://localhost:5000
 ### 1. Model Comparison
 - MLflow makes it easy to compare multiple models trained during experimentation.
 - For this project, seven classification models were evaluated on the same stratified 5-fold splits, including :
-	- Dummy Classifier 
-    - Logistic Regression
-    - K-Nearest Neighbors
-    - Support Vector Classifier
-    - Decision Tree
-    - Random Forest
-    - Gradient Boosting
+	- DummyClassifier (`DC`)
+    - LogisticRegression (`LR`)
+    - KNeighborsClassifier (`KNN`)
+    - SupportVectorClassifier (`SVC`)
+    - DecisionTreeClassifier (`DT`)
+    - RandomForestClassifier (`RF`)
+    - GradientBoostingClassifier (`GB`)
 - Metrics tracked per model :
-    - Accuracy
-    - Precision
-    - Recall
-    - F1-Score
-    - ROC-AUC
+	- Recall
     - PR-AUC
+    - ROC-AUC
+    - F1-Score
+    - Precision
+    - Accuracy
+
 - This helps identify the best-performing model based on business requirements.
 
 <img title="Model Comparison" src="https://github.com/user-attachments/assets/4d3435b0-9e96-4efd-9127-dabfbf85da3a">

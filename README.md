@@ -277,7 +277,7 @@ http://localhost:8000/docs
 >
 > `ALLOWED_ORIGINS` is used to configure CORS so that the deployed React frontend can communicate with the API.
 >
-> `HF_TOKEN` is used to fetch the model artifacts from Hugging Face Hub for the `/predict` endpoint.
+> `HF_TOKEN` is used to fetch the model artifacts from Hugging Face Hub at startup for the `/predict` endpoint.
 
 > [!NOTE]
 >

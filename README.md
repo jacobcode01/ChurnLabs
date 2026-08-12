@@ -704,7 +704,6 @@ http://localhost:5000
     - F1-Score
     - Precision
     - Accuracy
-
 - This helps identify the best-performing model based on business requirements.
 
 <img title="Model Comparison" src="https://github.com/user-attachments/assets/4d3435b0-9e96-4efd-9127-dabfbf85da3a">
@@ -724,7 +723,7 @@ http://localhost:5000
 
 ### 3. Production Model
 - After threshold optimization, the final production model is logged as a separate MLflow experiment.
-- This experiment captures the `GradientBoostingClassifier` with the tuned decision threshold ready for deployment.
+- This experiment captures the GradientBoostingClassifier with the tuned decision threshold ready for deployment.
 - Logged parameters include :
     - Model Type and Hyperparameters
     - Decision Threshold Value
@@ -907,7 +906,7 @@ f1_score    0
 roc_auc     0.5
 pr_auc      0.26
 ```
-- Since the dataset contains ~73% non-churn customers, the model achieves 73% accuracy.
+- Since the dataset contains \~73% non-churn customers, the model achieves 73% accuracy.
 - However, it fails to identify any churners, resulting in zero precision, recall, and F1-Score.
 - A model that never identifies a churner is useless, making recall and PR-AUC the only metrics that matter.
 - ROC-AUC of 0.5 and PR-AUC of 0.26 confirm no predictive power, performing equivalent to random guessing.

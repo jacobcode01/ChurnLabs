@@ -276,6 +276,8 @@ http://localhost:8000/docs
 > ```
 >
 > `ALLOWED_ORIGINS` is used to configure CORS so that the deployed React frontend can communicate with the API.
+>
+> `HF_TOKEN` is used to fetch the model artifacts from Hugging Face Hub for the `/predict` endpoint.
 
 > [!NOTE]
 >
@@ -709,12 +711,12 @@ http://localhost:5000
 ### 2. Threshold Optimization
 - After selecting the best-performing model, another experiment is conducted to optimize the decision threshold.
 - Instead of using the default threshold of 0.5, out-of-fold probabilities from cross-validation were used,
-- To plot the precision-recall curve and identify the threshold that achieves ≥90% recall while maximizing precision.
+- To plot the precision-recall curve and identify the threshold that achieves ≥80% recall while maximizing precision.
 - These experiments focused on :
     - Analyzing recall across different thresholds.
     - Selecting a threshold that meets business requirements.
     - Balancing precision-recall trade-offs.
-- Optimal threshold selection allowed the model to achieve \~90% recall for the churn class.
+- Optimal threshold selection allowed the model to achieve \~80% recall for the churn class.
 - This approach allows the trade-off between the two thresholds to be compared directly in the MLflow UI.
 
 <img title="Threshold Optimization" src="https://github.com/user-attachments/assets/00606cd6-554a-471a-bf3c-a546c3e65b90">
@@ -1385,7 +1387,9 @@ ChurnLabs/
 │   │   ├── main.tsx              # Application entry point
 │   │   ├── index.css             # Global styling
 │   │   │
-│   │   └── assets/
+│   │   ├── components/           # UI components (Navbar, FormFields, ResultCard)
+│   │   ├── hooks/                # useChurnPrediction hook (API call logic)
+│   │   └── lib/                  # Shared types and default form data
 │   │
 │   ├── Dockerfile                # Dockerfile for the frontend container
 │   ├── nginx.conf                # Nginx configuration for serving the frontend
